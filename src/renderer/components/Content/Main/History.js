@@ -60,6 +60,7 @@ const HistoryItem = styled.div`
   align-items: center;
   justify-items: center;
   border: 1px solid ${props => props.theme.grey[2]};
+  border-radius: ${props => props.theme.borderRadius};
   margin-bottom: 1rem;
   cursor: pointer;
   .date {

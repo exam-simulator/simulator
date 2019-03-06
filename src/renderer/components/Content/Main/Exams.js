@@ -1,75 +1,61 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Delete } from 'styled-icons/material/Delete'
+import { ChevronDown } from 'styled-icons/boxicons-regular/ChevronDown'
+import { ChevronUp } from 'styled-icons/boxicons-regular/ChevronUp'
 import { BLUE_LOGO_PATH } from '../../../utils/filepaths'
 import formatCreatedAt from '../../../utils/formatCreatedAt'
+import Media from '../../../styles/Media'
 
 const ExamStyles = styled.div`
+  width: 100%;
   height: calc(100vh - 14rem);
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: ${props => `repeat(${props.rows}, 20rem)`};
   overflow-x: hidden;
   overflow-y: auto;
 `
 
 const ExamItem = styled.div`
+  min-width: 80rem;
+  height: ${props => (props.show ? '12rem' : '6rem')};
   display: grid;
-  grid-template-columns: 6rem 1fr 4rem;
-  grid-gap: 2rem;
-  align-items: center;
-  padding: 1rem;
+  grid-template-rows: ${props => (props.show ? '1fr 1fr' : '1fr')};
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
-  margin-right: 2rem;
+  cursor: pointer;
   margin-bottom: 2rem;
+  transition: all 0.3s;
   &:hover {
     background: ${props => props.theme.grey[0]};
   }
-  .image {
-    justify-self: center;
-    width: 4rem;
-    cursor: pointer;
-  }
   .main {
-    cursor: pointer;
+    display: grid;
+    grid-template-columns: 8rem 1fr 10rem 14rem 6rem 6rem;
+    justify-items: center;
+    align-items: center;
+    .image {
+      justify-self: center;
+      width: 4rem;
+      cursor: pointer;
+    }
     .title {
+      justify-self: flex-start;
       font: 2rem 'Open Sans';
       font-weight: 700;
       color: ${props => props.theme.grey[12]};
     }
-    .description {
-      font: 1.1rem 'Open Sans';
-      text-align: justify;
-      margin-bottom: 0.5rem;
-    }
     .stat {
-      font: 1rem 'Open Sans';
+      justify-self: flex-start;
+      font: 1.25rem 'Open Sans';
       font-weight: 600;
-      text-transform: uppercase;
-      color: ${props => props.theme.grey[10]};
-      border: 1px solid ${props => props.theme.grey[2]};
-      border-radius: ${props => props.theme.borderRadius};
-      background: ${props => props.theme.grey[0]};
-      padding: 0.1rem 0.25rem;
-      margin-right: 0.5rem;
+      color: ${props => props.theme.black};
     }
-    .meta {
-      display: flex;
+    .actions {
+      display: grid;
+      justify-items: center;
       align-items: center;
-      font: 1rem 'Open Sans';
-      font-weight: 600;
-      color: ${props => props.theme.grey[8]};
-      margin-top: 0.5rem;
-      .avatar {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-      }
+      width: 4rem;
+      height: 100%;
     }
-  }
-  .actions {
-    justify-self: center;
     .delete {
       transition: 0.3s;
       cursor: pointer;
@@ -78,35 +64,66 @@ const ExamItem = styled.div`
         color: ${props => props.theme.secondary};
       }
     }
+    .more {
+      color: ${props => props.theme.grey[12]};
+    }
+  }
+  .extra {
+    display: ${props => (props.show ? 'grid' : 'none')};
+    grid-template-columns: 50rem 1fr 10rem 14rem 6rem 6rem;
+    justify-items: center;
+    align-items: center;
+    transition: all 0.3s;
+    .description {
+      font: 1rem 'Open Sans';
+      text-align: justify;
+      padding: 1rem;
+    }
+    .stat {
+      justify-self: flex-start;
+      font: 1.25rem 'Open Sans';
+      font-weight: 600;
+      color: ${props => props.theme.black};
+    }
   }
 `
 
 export default ({ exams, setIndexExam, initExam }) => {
+  const [show, setShow] = useState(null)
+
   const onDeleteClick = (e, i) => {
     e.stopPropagation()
     setIndexExam(i)
   }
 
+  const toggleShow = (e, i) => {
+    e.stopPropagation()
+    setShow(show !== null ? null : i)
+  }
+
   return (
     <ExamStyles rows={Math.ceil(exams.length / 2)}>
       {exams.map((el, i) => (
-        <ExamItem key={i} onClick={() => initExam(i)}>
-          <img className="image" src={el.image || BLUE_LOGO_PATH} alt={el.title} />
+        <ExamItem key={i} show={show === i} onClick={() => initExam(i)}>
           <div className="main">
+            <img className="image" src={el.image || BLUE_LOGO_PATH} alt={el.title} />
             <div className="title">{el.title}</div>
-            <div className="description">{el.description}</div>
-            {el.code ? <span className="stat">code: {el.code}</span> : null}
-            <span className="stat">questions: {el.test.length}</span>
-            <span className="stat">time: {el.time} min</span>
-            <span className="stat">passing: {el.pass}%</span>
-            <div className="meta">
-              <div>Created {formatCreatedAt(el.createdAt)} ago &nbsp;&bull;&nbsp;</div>
-              <div>{el.author.name} &nbsp;&bull;&nbsp;</div>
-              <img className="avatar" src={el.author.image} />
+            <div className="stat">Questions: {el.test.length}</div>
+            <div className="stat">Created {formatCreatedAt(el.createdAt)} ago</div>
+            <div className="actions delete" onClick={e => onDeleteClick(e, i)}>
+              <Delete size={20} />
+            </div>
+            <div className="actions more" onClick={e => toggleShow(e, i)}>
+              {show === i ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </div>
           </div>
-          <div className="actions">
-            <Delete className="delete" size={20} onClick={e => onDeleteClick(e, i)} />
+          <div className="extra">
+            <div className="description">{el.description}</div>
+            <div />
+            <div className="stat">Time: {el.time} Min</div>
+            <div className="stat">Passing Score: {el.pass}%</div>
+            <div />
+            <div />
           </div>
         </ExamItem>
       ))}
