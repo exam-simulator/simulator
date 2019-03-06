@@ -119,7 +119,11 @@ const Bar = styled.div`
   }
 `
 
-export default ({ history }) => {
+export default ({ history, setIndexHistory }) => {
+  const onOpenConfirmReview = i => {
+    setIndexHistory(i)
+  }
+
   if (history.length) {
     const [groupedByFilename, uniqueFilenames, averageScores, averageTimes] = createHistoryGroups(
       history
@@ -154,7 +158,7 @@ export default ({ history }) => {
               </div>
               <div className="items">
                 {groupedByFilename[uf].map((gbf, j) => (
-                  <HistoryItem key={`j${j}`}>
+                  <HistoryItem key={`j${j}`} onClick={() => onOpenConfirmReview(gbf.indexHistory)}>
                     <div className="date">{formatDate(gbf.date)}</div>
                     {gbf.status ? (
                       <Like className="pass" size={20} />
@@ -174,7 +178,13 @@ export default ({ history }) => {
                       <div>{gbf.score}%</div>
                     </Bar>
                     <div />
-                    <div className="delete">
+                    <div
+                      className="delete"
+                      onClick={e => {
+                        e.stopPropagation()
+                        // open delete confirm
+                      }}
+                    >
                       <Delete size={20} />
                     </div>
                   </HistoryItem>

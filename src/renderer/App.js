@@ -236,6 +236,7 @@ export default class App extends React.Component {
           onMultipleChoice={this.onMultipleChoice}
           onMultipleAnswer={this.onMultipleAnswer}
           onFillIn={this.onFillIn}
+          initReview={this.initReview}
         />
       </Navigation>
     )

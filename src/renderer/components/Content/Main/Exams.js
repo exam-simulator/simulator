@@ -1,26 +1,33 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { darken } from 'polished'
-import { PlayCircleFilled } from 'styled-icons/material/PlayCircleFilled'
 import { Delete } from 'styled-icons/material/Delete'
 import { BLUE_LOGO_PATH } from '../../../utils/filepaths'
 import formatCreatedAt from '../../../utils/formatCreatedAt'
 
 const ExamStyles = styled.div`
-  width: 100%;
+  height: calc(100vh - 14rem);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: ${props => `repeat(${props.rows}, 20rem)`};
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 
 const ExamItem = styled.div`
-  width: 70rem;
   display: grid;
-  grid-template-columns: 5rem 1fr 4rem;
+  grid-template-columns: 6rem 1fr 4rem;
   grid-gap: 2rem;
   align-items: center;
   padding: 1rem;
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
+  margin-right: 2rem;
   margin-bottom: 2rem;
+  &:hover {
+    background: ${props => props.theme.grey[0]};
+  }
   .image {
+    justify-self: center;
     width: 4rem;
     cursor: pointer;
   }
@@ -37,7 +44,7 @@ const ExamItem = styled.div`
       margin-bottom: 0.5rem;
     }
     .stat {
-      font: 0.85rem 'Open Sans';
+      font: 1rem 'Open Sans';
       font-weight: 600;
       text-transform: uppercase;
       color: ${props => props.theme.grey[10]};
@@ -62,21 +69,10 @@ const ExamItem = styled.div`
     }
   }
   .actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    svg {
+    justify-self: center;
+    .delete {
       transition: 0.3s;
       cursor: pointer;
-    }
-    .play {
-      color: ${props => props.theme.grey[12]};
-
-      &:hover {
-        color: ${props => darken(0.1, props.theme.tertiary)};
-      }
-    }
-    .delete {
       color: ${props => props.theme.grey[12]};
       &:hover {
         color: ${props => props.theme.secondary};
@@ -86,24 +82,17 @@ const ExamItem = styled.div`
 `
 
 export default ({ exams, setIndexExam, initExam }) => {
-  const [show, setShow] = useState(false)
-
-  const onDeleteClick = i => {
-    setShow(true)
+  const onDeleteClick = (e, i) => {
+    e.stopPropagation()
     setIndexExam(i)
   }
 
   return (
-    <ExamStyles>
+    <ExamStyles rows={Math.ceil(exams.length / 2)}>
       {exams.map((el, i) => (
-        <ExamItem key={i}>
-          <img
-            className="image"
-            src={el.image || BLUE_LOGO_PATH}
-            alt={el.title}
-            onClick={() => initExam(i)}
-          />
-          <div className="main" onClick={() => initExam(i)}>
+        <ExamItem key={i} onClick={() => initExam(i)}>
+          <img className="image" src={el.image || BLUE_LOGO_PATH} alt={el.title} />
+          <div className="main">
             <div className="title">{el.title}</div>
             <div className="description">{el.description}</div>
             {el.code ? <span className="stat">code: {el.code}</span> : null}
@@ -117,8 +106,7 @@ export default ({ exams, setIndexExam, initExam }) => {
             </div>
           </div>
           <div className="actions">
-            {/* <PlayCircleFilled className="play" size={20} onClick={() => initExam(i)} /> */}
-            <Delete className="delete" size={20} onClick={() => onDeleteClick(i)} />
+            <Delete className="delete" size={20} onClick={e => onDeleteClick(e, i)} />
           </div>
         </ExamItem>
       ))}

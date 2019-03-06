@@ -21,6 +21,8 @@ import { Bookmark } from 'styled-icons/material/Bookmark'
 import { Check } from 'styled-icons/material/Check'
 import { Pause } from 'styled-icons/material/Pause'
 import { Stop } from 'styled-icons/material/Stop'
+import { Close } from 'styled-icons/material/Close'
+import { QuestionMark } from 'styled-icons/boxicons-regular/QuestionMark'
 import Grid from './Grid'
 import Stats from './Stats'
 
@@ -83,6 +85,8 @@ const MenuItem = styled.div`
   }
 `
 
+const ReviewGrid = styled.div``
+
 export default ({
   open,
   mode,
@@ -129,7 +133,7 @@ export default ({
       onClick: setConfirmBeginExam
     },
     { type: 'stats' },
-    { type: 'menu', text: 'Back', icon: <ArrowBack size={20} />, onClick: () => setMode(0) }
+    { type: 'menu', text: 'Back to Main', icon: <ArrowBack size={20} />, onClick: () => setMode(0) }
   ]
 
   // Exam Menu show when mode === 2
@@ -137,13 +141,23 @@ export default ({
     { type: 'menu', text: 'All Questions', icon: <FormatListNumbered size={20} /> },
     { type: 'menu', text: 'Marked Questions', icon: <Bookmark size={20} /> },
     { type: 'menu', text: 'Calculator', icon: <Calculator size={20} /> },
-    { type: 'grid' },
+    { type: 'exam-grid' },
     { type: 'menu', text: 'Show Answer', icon: <Check size={20} />, onClick: onShowExplanation },
     { type: 'menu', text: 'Pause Exam', icon: <Pause size={20} /> },
     { type: 'menu', text: 'End Exam', icon: <Stop size={20} />, onClick: setConfirmEndExam }
   ]
 
-  const menu = mode === 0 ? menu0 : mode === 1 ? menu1 : mode === 2 ? menu2 : []
+  // Review Menu show when mode === 3
+  const menu3 = [
+    { type: 'menu', text: 'All Questions', icon: <FormatListNumbered size={20} /> },
+    { type: 'menu', text: 'Incorrect Answers', icon: <Close size={20} /> },
+    { type: 'menu', text: 'Incomplete', icon: <QuestionMark size={20} /> },
+    { type: 'review-grid' },
+    { type: 'menu', text: 'Back to Main', icon: <ArrowBack size={20} />, onClick: () => setMode(0) }
+  ]
+
+  const menu =
+    mode === 0 ? menu0 : mode === 1 ? menu1 : mode === 2 ? menu2 : mode === 3 ? menu3 : []
   return (
     <DrawerStyles>
       <Control open={open} onClick={toggleOpen}>
@@ -160,7 +174,7 @@ export default ({
             )
           } else if (el.type === 'stats') {
             return <Stats key={i} open={open} exam={exam} />
-          } else if (el.type === 'grid') {
+          } else if (el.type === 'exam-grid') {
             return (
               <Grid
                 key={i}
@@ -174,6 +188,8 @@ export default ({
                 setQuestion={setQuestion}
               />
             )
+          } else if (el.type === 'review-grid') {
+            return <ReviewGrid key={i} open={open} />
           }
         })}
       </MainMenu>

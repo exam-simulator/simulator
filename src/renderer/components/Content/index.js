@@ -4,14 +4,13 @@ import Exams from './Main/Exams'
 import History from './Main/History'
 import Cover from './Cover'
 import Exam from './Exam'
-import { Slide } from '../../styles/Slide'
 
 const ContentStyles = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;
   padding: 2rem;
-  padding-right: ${props => (props.open ? '26rem' : '7rem')};
+  padding-right: ${props => (props.open ? '28rem' : '7rem')};
   transition: 0.3s;
 `
 
@@ -26,13 +25,15 @@ export default class Content extends React.Component {
     const p = this.props
     if (p.mode === 0) {
       if (p.mainMode === 0) {
-        return (
-          <Slide direction="right">
-            <Exams exams={p.exams} setIndexExam={p.setIndexExam} initExam={p.initExam} />
-          </Slide>
-        )
+        return <Exams exams={p.exams} setIndexExam={p.setIndexExam} initExam={p.initExam} />
       } else if (p.mainMode === 1) {
-        return <History history={p.history} setIndexHistory={p.setIndexHistory} />
+        return (
+          <History
+            history={p.history}
+            setIndexHistory={p.setIndexHistory}
+            initReview={p.initReview}
+          />
+        )
       }
     } else if (p.mode === 1) {
       return <Cover cover={p.exam.cover} />

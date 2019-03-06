@@ -1,7 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import mainWinDimensions from 'common/mainWinDimensions'
 import mainWinContent from 'common/mainWinContent'
-
+import mainWinIcon from 'common/mainWinIcon'
+console.log(mainWinIcon)
 let mainWin
 
 const inDev = process.env.NODE_ENV === 'development'
@@ -13,6 +14,7 @@ function createMainWin() {
     width,
     height,
     title: 'Exam Simulator',
+    icon: mainWinIcon,
     webPreferences: {
       nodeIntegration: true
     }
