@@ -1,0 +1,217 @@
+{
+  "author": {
+    "id": "5bbec39837b4fd0a207df53e",
+    "name": "benjaminadk",
+    "image": "https://yt3.ggpht.com/-9Q_OGPy0Reg/AAAAAAAAAAI/AAAAAAAAAAA/a-GWCV9iwcA/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+  },
+  "createdAt": "2019-03-05T08:06:29.168Z",
+  "title": "Demo Exam",
+  "description": "Demo Exam to show the capabilities of Exam Simulator. Questions are themed around the Netflix documentary series 'Making a Murderer'. Features include multiple choice, multiple answer, fill in and list order questions as well as explanations.",
+  "code": "000-000",
+  "pass": 75,
+  "time": 10,
+  "image": "https://s3.amazonaws.com/electron-exam/general/icon-50x50.png",
+  "cover": [
+    { "variant": 2, "text": "Demo Exam" },
+    { "variant": 1, "text": "Making a Murderer Edition" },
+    { "variant": 0, "text": "https://s3.amazonaws.com/electron-exam/general/brain.png" },
+    { "variant": 1, "text": "Get a serious brain workout with Exam Simulator" },
+    { "variant": 1, "text": "Build your own exam with Exam Maker" },
+    { "variant": 1, "text": "Embrace free and open source software" }
+  ],
+  "test": [
+    {
+      "answer": [false],
+      "question": [
+        {
+          "variant": 1,
+          "text": "Arrange the following events from Making a Murderer in chronological order."
+        },
+        { "variant": 1, "text": "Place the event that happened first at the top." }
+      ],
+      "choices": [
+        { "label": 0, "text": "Avery rape conviction overturned" },
+        { "label": 1, "text": "Avery files 36 million dollar lawsuit" },
+        { "label": 2, "text": "Teresa Halbach is reported missing" },
+        { "label": 3, "text": "Toyota RAV4 is found at salvage yard" },
+        { "label": 4, "text": "Brendan Dassey confesses to murder" },
+        { "label": 5, "text": "Avery convicted of 1st degree murder" }
+      ],
+      "explanation": [],
+      "variant": 3
+    },
+    {
+      "answer": [false, true, false, false],
+      "question": [
+        {
+          "variant": 1,
+          "text": "Who is the lead prosecutor in Season One of the Netflix series Making a Murderer?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "Norman Gahn" },
+        { "label": "B", "text": "Kenneth Kratz" },
+        { "label": "C", "text": "Mark Fremgen" },
+        { "label": "D", "text": "Dean Strang" }
+      ],
+      "explanation": [
+        { "variant": 1, "text": "Ken Kratz during his infamous press conference." },
+        {
+          "variant": 0,
+          "text": "https://hips.hearstapps.com/esq.h-cdn.co/assets/16/04/1453735169-4886.jpeg?resize=480:*"
+        }
+      ],
+      "variant": 0
+    },
+    {
+      "answer": [false, false, true, false, true],
+      "question": [
+        {
+          "variant": 1,
+          "text": "Which two characters are convicted for the murder of Teresa Halbach?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "Earl Avery" },
+        { "label": "B", "text": "Chuck Avery" },
+        { "label": "C", "text": "Steve Avery" },
+        { "label": "D", "text": "Bobby Dassey" },
+        { "label": "E", "text": "Brendan Dassey" }
+      ],
+      "explanation": [
+        { "variant": 1, "text": "Avery and Dassey cerca 2006 at the time of their trials." },
+        {
+          "variant": 0,
+          "text": "https://www.thewrap.com/wp-content/uploads/2015/12/Steven-Avery-Brendan-Dassey-Making-a-Murderer-Netflix.jpg"
+        }
+      ],
+      "variant": 1
+    },
+    {
+      "answer": [false, false, false, true],
+      "question": [
+        {
+          "variant": 1,
+          "text": "What Wisconsin county is in charge of investigating and prosecuting the murder of Teresa Halbach?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "Winnebago" },
+        { "label": "B", "text": "Sheboygan" },
+        { "label": "C", "text": "Manitowak" },
+        { "label": "D", "text": "Calumet" }
+      ],
+      "explanation": [],
+      "variant": 0
+    },
+    {
+      "answer": [false],
+      "question": [
+        {
+          "variant": 1,
+          "text": "What is the name of the post conviction lawyer that argued for Habeas Corpus relief in front of the 7th Circuit Court in Chicago?"
+        }
+      ],
+      "choices": [{ "label": "B", "text": "Laura Nirider" }],
+      "explanation": [],
+      "variant": 2
+    },
+    {
+      "answer": [false, false, true, false],
+      "question": [
+        {
+          "variant": 1,
+          "text": "What make and model of vehicle was Teresa Halbach driving when she went missing?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "Honda Element" },
+        { "label": "B", "text": "Jeep Liberty" },
+        { "label": "C", "text": "Toyota RAV4" },
+        { "label": "D", "text": "Chevrolet Escape" }
+      ],
+      "explanation": [],
+      "variant": 0
+    },
+    {
+      "answer": [false, false, true, false],
+      "question": [
+        { "variant": 1, "text": "Which important character is pictured below?" },
+        { "variant": 0, "text": "https://s3.amazonaws.com/electron-exam/general/demo/dolores.jpg" }
+      ],
+      "choices": [
+        { "label": "A", "text": "Kathleen Zellner" },
+        { "label": "B", "text": "Teresa Halbach" },
+        { "label": "C", "text": "Dolores Avery" },
+        { "label": "D", "text": "Barbara Tadych" }
+      ],
+      "explanation": [],
+      "variant": 0
+    },
+    {
+      "answer": [true, true, false, false, true],
+      "question": [
+        {
+          "variant": 1,
+          "text": "What types of crimes has Steve Avery been accused of during his lifetime?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "Lighting a cat on fire" },
+        { "label": "B", "text": "Murder" },
+        { "label": "C", "text": "Forging Checks" },
+        { "label": "D", "text": "Heroin Possession" },
+        { "label": "E", "text": "Rape" }
+      ],
+      "explanation": [],
+      "variant": 1
+    },
+    {
+      "answer": [false, false, true, false],
+      "question": [{ "variant": 1, "text": "What is the Avery family business?" }],
+      "choices": [
+        { "label": "A", "text": "Italian Restaurant " },
+        { "label": "B", "text": "Landscaping" },
+        { "label": "C", "text": "Automotive" },
+        { "label": "D", "text": "Convenience Store" }
+      ],
+      "explanation": [],
+      "variant": 0
+    },
+    {
+      "answer": [true, false, false, false],
+      "question": [
+        {
+          "variant": 1,
+          "text": "What state does Steve Avery want to move to, with his parents, after he is exonerated?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "Michigan" },
+        { "label": "B", "text": "California" },
+        { "label": "C", "text": "Montana" },
+        { "label": "D", "text": "Texas" }
+      ],
+      "explanation": [],
+      "variant": 0
+    },
+    {
+      "answer": [false, true, true, false, false],
+      "question": [
+        {
+          "variant": 1,
+          "text": "Who were Steve Avery's two main lawyers in Season One of Making a Murderer?"
+        }
+      ],
+      "choices": [
+        { "label": "A", "text": "James Lenk" },
+        { "label": "B", "text": "Dean Strang" },
+        { "label": "C", "text": "Jerry Buting" },
+        { "label": "D", "text": "Kathleen Zellner" },
+        { "label": "E", "text": "Bobby Dassey" }
+      ],
+      "explanation": [],
+      "variant": 1
+    }
+  ]
+}
