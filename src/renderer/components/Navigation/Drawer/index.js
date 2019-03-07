@@ -24,6 +24,7 @@ import { Stop } from 'styled-icons/material/Stop'
 import { Close } from 'styled-icons/material/Close'
 import { QuestionMark } from 'styled-icons/boxicons-regular/QuestionMark'
 import { Report } from 'styled-icons/boxicons-solid/Report'
+import { Edit } from 'styled-icons/boxicons-solid/Edit'
 import Grid from './Grid'
 import Stats from './Stats'
 import ReviewGrid from './ReviewGrid'
@@ -212,6 +213,11 @@ export default ({
       text: 'Report Summary',
       icon: <Report size={20} />,
       onClick: () => setReviewMode(0)
+    },
+    {
+      type: 'menu',
+      text: 'Add Notes',
+      icon: <Edit size={20} />
     },
     {
       type: 'menu',

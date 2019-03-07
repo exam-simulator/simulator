@@ -148,7 +148,7 @@ export default class App extends React.Component {
    */
   initExam = i => {
     const exam = this.state.exams[i]
-    const [answers, fillIns, orders] = examDataStuctures(exam)
+    const [answers, fillIns, orders, intervals] = examDataStuctures(exam)
     const marked = []
     const time = exam.time * 60
     this.setState({
@@ -158,6 +158,7 @@ export default class App extends React.Component {
       answers,
       fillIns,
       orders,
+      intervals,
       marked,
       time,
       indexExam: i
@@ -166,7 +167,7 @@ export default class App extends React.Component {
 
   initTimer = () => {
     this.timer = setInterval(() => {
-      const time = this.state.time
+      const { time } = this.state
       if (time === 0) {
         clearInterval(this.timer)
         return
@@ -179,10 +180,12 @@ export default class App extends React.Component {
     clearInterval(this.timer)
   }
 
+  setIntervals = intervals => this.setState({ intervals })
+
   endExam = () => {
     this.pauseTimer()
-    const { exam, answers, fillIns, orders, time, history } = this.state
-    const report = analyzeAnswers(exam, answers, fillIns, orders, time)
+    const { exam, answers, fillIns, orders, intervals, time, history } = this.state
+    const report = analyzeAnswers(exam, answers, fillIns, orders, time, intervals)
     history.push(report)
     this.setState(
       {
@@ -332,6 +335,7 @@ export default class App extends React.Component {
           onMultipleAnswer={this.onMultipleAnswer}
           onFillIn={this.onFillIn}
           onListOrder={this.onListOrder}
+          setIntervals={this.setIntervals}
         />
       </Navigation>
     )

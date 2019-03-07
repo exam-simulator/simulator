@@ -24,12 +24,14 @@ export default ({
   answers,
   fillIns,
   orders,
+  intervals,
   marked,
   onBookmarkQuestion,
   onMultipleChoice,
   onMultipleAnswer,
   onFillIn,
-  onListOrder
+  onListOrder,
+  setIntervals
 }) => {
   return (
     <TestStyles>
@@ -44,7 +46,12 @@ export default ({
           const { variant } = el
           return (
             <Slide key={i} direction="right">
-              <Question question={el.question} />
+              <Question
+                question={el.question}
+                index={i}
+                intervals={intervals}
+                setIntervals={setIntervals}
+              />
               {variant === 0 ? (
                 <MultipleChoice
                   question={el}

@@ -7,8 +7,9 @@ import isequal from 'lodash.isequal'
  * @param fillIns {string[]} - answers to fill in the blank questions
  * @param orders {boolean[]} - answers to order list questions
  * @param time {number} - time in seconds remaining from exam time
+ * @param intervals {number[]} - time spent on each question
  */
-export default (exam, answers, fillIns, orders, time) => {
+export default (exam, answers, fillIns, orders, time, intervals) => {
   const correct = []
   const incorrect = []
   const incomplete = []
@@ -48,6 +49,7 @@ export default (exam, answers, fillIns, orders, time) => {
     answers,
     fillIns,
     orders,
+    intervals,
     date,
     elapsed
   }

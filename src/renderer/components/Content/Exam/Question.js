@@ -27,18 +27,44 @@ const BigText = styled.div`
   color: ${props => props.theme.black};
 `
 
-export default ({ question }) => (
-  <QuestionStyles>
-    {question.map((el, i) => {
-      if (el.variant === 0) {
-        return <Image key={i} src={el.text} />
-      } else if (el.variant === 1) {
-        return <NormalText key={i}>{el.text}</NormalText>
-      } else if (el.variant === 2) {
-        return <BigText key={i}>{el.text}</BigText>
-      } else {
-        return null
-      }
-    })}
-  </QuestionStyles>
-)
+export default class Question extends React.Component {
+  state = {
+    time: 0
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const { time } = this.state
+      this.setState({ time: time + 1 })
+    }, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+    let {
+      props: { intervals, index },
+      state: { time }
+    } = this
+    intervals[index] += time
+    this.props.setIntervals(intervals)
+  }
+
+  render() {
+    const { question } = this.props
+    return (
+      <QuestionStyles>
+        {question.map((el, i) => {
+          if (el.variant === 0) {
+            return <Image key={i} src={el.text} />
+          } else if (el.variant === 1) {
+            return <NormalText key={i}>{el.text}</NormalText>
+          } else if (el.variant === 2) {
+            return <BigText key={i}>{el.text}</BigText>
+          } else {
+            return null
+          }
+        })}
+      </QuestionStyles>
+    )
+  }
+}
