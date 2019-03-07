@@ -15,6 +15,8 @@ const ContentStyles = styled.div`
   transition: 0.3s;
 `
 
+const Sessions = styled.div``
+
 export default class Content extends React.Component {
   renderContent = () => {
     const p = this.props
@@ -29,6 +31,8 @@ export default class Content extends React.Component {
             setConfirmReviewExam={p.setConfirmReviewExam}
           />
         )
+      } else if (p.mainMode === 2) {
+        return <Sessions>{JSON.stringify(p.sessions)}</Sessions>
       }
     } else if (p.mode === 1) {
       return <Cover cover={p.exam.cover} />

@@ -97,8 +97,6 @@ export default ({
   orders,
   marked,
   report,
-  reviewMode,
-  reviewType,
   reviewQuestion,
   toggleOpen,
   setMode,
@@ -110,7 +108,8 @@ export default ({
   setReviewType,
   setReviewQuestion,
   setConfirmBeginExam,
-  setConfirmEndExam
+  setConfirmEndExam,
+  setConfirmSaveSession
 }) => {
   // Main Menu show when mode === 0
   const menu0 = [
@@ -155,9 +154,14 @@ export default ({
   const menu2 = [
     { type: 'menu', text: 'All Questions', icon: <FormatListNumbered size={20} /> },
     { type: 'menu', text: 'Marked Questions', icon: <Bookmark size={20} /> },
-    { type: 'menu', text: 'Calculator', icon: <Calculator size={20} /> },
-    { type: 'exam-grid' },
     { type: 'menu', text: 'Show Answer', icon: <Check size={20} />, onClick: onShowExplanation },
+    { type: 'exam-grid' },
+    {
+      type: 'menu',
+      text: 'Save Session',
+      icon: <Save size={20} />,
+      onClick: setConfirmSaveSession
+    },
     { type: 'menu', text: 'Pause Exam', icon: <Pause size={20} /> },
     { type: 'menu', text: 'End Exam', icon: <Stop size={20} />, onClick: setConfirmEndExam }
   ]

@@ -11,7 +11,7 @@ const HistoryItemStyles = styled.div`
   width: 100%;
   height: 5rem;
   display: grid;
-  grid-template-columns: 8rem 4rem 6rem 22rem 22rem 1fr 4rem;
+  grid-template-columns: 8rem 4rem 6rem 25rem 25rem 1fr 4rem;
   align-items: center;
   justify-items: center;
   border: 1px solid ${props => props.theme.grey[2]};

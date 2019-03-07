@@ -11,6 +11,7 @@ import writeData from './utils/writeData'
 import showFileDialog from './utils/showFileDialog'
 import analyzeAnswers from './utils/analyzeAnswers'
 import examDataStuctures from './utils/examDataStuctures'
+import createSession from './utils/createSession'
 import { DATA_DIR_PATH } from './utils/filepaths'
 import Navigation from './components/Navigation'
 import Content from './components/Content'
@@ -215,6 +216,16 @@ export default class App extends React.Component {
     )
   }
 
+  saveSession = () => {
+    clearInterval(this.timer)
+    const { sessions } = this.state
+    const session = createSession(this.state)
+    sessions.push(session)
+    this.setState({ mode: 0, sessions, indexExam: null }, () => {
+      writeData('session', sessions)
+    })
+  }
+
   initReview = () => {
     const { exams, history, indexHistory } = this.state
     const report = history[indexHistory]
@@ -251,6 +262,7 @@ export default class App extends React.Component {
         setReviewMode={this.setReviewMode}
         setReviewType={this.setReviewType}
         setRevewQuestion={this.setReviewQuestion}
+        saveSession={this.saveSession}
       >
         <Content
           {...rest}
