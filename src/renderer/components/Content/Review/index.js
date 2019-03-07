@@ -1,11 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
-const SummaryStyles = styled.div``
-
-function Summary() {
-  return <SummaryStyles>summary</SummaryStyles>
-}
+import Summary from './Summary'
 
 const ReviewExamStyles = styled.div``
 
@@ -16,10 +11,10 @@ function ReviewExam() {
 export default class Review extends React.Component {
   render() {
     const {
-      props: { reviewMode }
+      props: { reviewMode, report }
     } = this
     if (reviewMode === 0) {
-      return <Summary />
+      return <Summary report={report} />
     } else {
       return <ReviewExam />
     }
