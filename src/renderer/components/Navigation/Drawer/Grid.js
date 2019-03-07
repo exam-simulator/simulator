@@ -62,7 +62,7 @@ export const GridItem = styled.div`
   border: 1px solid ${props => props.theme.grey[3]};
   font: 1rem 'Open Sans';
   font-weight: 700;
-  outline: 2px solid ${props => (props.selected ? props.theme.primary : 'transparent')};
+  outline: 3px solid ${props => (props.selected ? props.theme.grey[10] : 'transparent')};
   cursor: pointer;
 `
 

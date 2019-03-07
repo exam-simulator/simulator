@@ -39,6 +39,7 @@ export default (exam, answers, fillIns, orders, time) => {
     pass: exam.pass,
     time: exam.time,
     testLength: exam.test.length,
+    image: exam.image,
     status,
     score,
     correct,

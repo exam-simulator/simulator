@@ -16,7 +16,7 @@ const HistoryGroupStyles = styled.div`
   .group-data {
     height: 5rem;
     display: grid;
-    grid-template-columns: 4rem 30rem 30rem 1fr 4rem;
+    grid-template-columns: 4rem 1fr 1fr 1fr 4rem;
     align-items: center;
     background: ${props => props.theme.grey[0]};
     img {
@@ -28,12 +28,6 @@ const HistoryGroupStyles = styled.div`
       font: 2rem 'Open Sans';
       font-weight: 700;
       color: ${props => props.theme.black};
-    }
-    .time {
-      display: flex;
-      align-items: center;
-      font: 1.25rem 'Open Sans';
-      font-weight: 600;
     }
     .expand {
       width: 4rem;
@@ -53,7 +47,7 @@ export default ({ reports, averageScore, averageTime, onOpenConfirmReview, onDel
   const [expand, setExpand] = useState(true)
   return (
     <HistoryGroupStyles expand={expand}>
-      <div className="group-data">
+      <div className="group-data" onClick={() => setExpand(!expand)}>
         <img src={reports[0].image || BLUE_LOGO_PATH} />
         <div className="title">{reports[0].title}</div>
         <Bar

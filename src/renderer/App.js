@@ -15,6 +15,7 @@ import createSession from './utils/createSession'
 import { DATA_DIR_PATH } from './utils/filepaths'
 import Navigation from './components/Navigation'
 import Content from './components/Content'
+import bookmarkQuestion from './utils/bookmarkQuestion'
 
 const mainWin = remote.BrowserWindow.fromId(1)
 
@@ -74,12 +75,12 @@ export default class App extends React.Component {
   setOptions = async () => this.setState({ options: await readOptionsFile() })
 
   loadLocalExam = async () => {
-    const success = await showFileDialog(mainWin)
-    if (success) {
-      if (typeof success === 'boolean') {
+    const errors = await showFileDialog(mainWin)
+    if (!errors) {
+      if (typeof errors === 'boolean') {
         this.setExams()
-      } else if (typeof success === 'object') {
-        // do something with error
+      } else if (typeof errors === 'object') {
+        console.log(errors)
       }
     }
   }
@@ -95,26 +96,51 @@ export default class App extends React.Component {
   /**
    * Sets the question index
    * @param newQuestion {integer} - index to set question to
-   * @param source {string|number} - the source of the function call
+   * @param source {string|number} - 'grid' = direct question click | 0 = skip to start | 1 = prev | 2 = next | 3 = skip to end
    */
   setQuestion = (question, source) => {
     const {
-      exam: { test }
+      exam: { test },
+      examMode,
+      marked
     } = this.state
+    // direct question click
     if (source === 'grid') {
       return this.setState({ question, explanation: false })
     }
     if (question < 0 || question > test.length - 1) {
       return
     }
-    this.setState({ question, explanation: false })
+    // buttons and sliders
+    // all questions mode
+    if (examMode === 0) {
+      this.setState({ question, explanation: false })
+      // bookmark mode
+    } else {
+      if (marked.length === 1) return
+      const newQuestion = bookmarkQuestion(source, marked, question)
+      if (!newQuestion) {
+        return
+      }
+      this.setState({ question: newQuestion })
+    }
   }
 
   /**
    * Set exam mode 0 - all questions | 1 - bookmarked questions
    * @param examMode {number} - the new mode
    */
-  setExamMode = examMode => this.setState({ examMode })
+  setExamMode = examMode => {
+    if (examMode === 1) {
+      const { marked } = this.state
+      if (!marked.length) {
+        return
+      }
+      this.setState({ question: marked[0], examMode })
+    } else {
+      this.setState({ examMode })
+    }
+  }
 
   /**
    * Prepare data structures for exam, shows cover screen
@@ -179,7 +205,11 @@ export default class App extends React.Component {
     } else {
       newMarked = marked.filter(el => el !== i)
       if (examMode === 1) {
-        this.setExamMode(0)
+        if (!newMarked.length) {
+          this.setExamMode(0)
+        } else {
+          this.setState({ question: newMarked[0] })
+        }
       }
     }
     newMarked.sort((a, b) => a - b)
@@ -283,6 +313,7 @@ export default class App extends React.Component {
         loadLocalExam={this.loadLocalExam}
         onShowExplanation={this.onShowExplanation}
         endExam={this.endExam}
+        setExamMode={this.setExamMode}
         initReview={this.initReview}
         setReviewMode={this.setReviewMode}
         setReviewType={this.setReviewType}

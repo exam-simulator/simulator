@@ -104,6 +104,7 @@ export default ({
   setQuestion,
   loadLocalExam,
   onShowExplanation,
+  setExamMode,
   setReviewMode,
   setReviewType,
   setReviewQuestion,
@@ -152,8 +153,18 @@ export default ({
 
   // Exam Menu show when mode === 2
   const menu2 = [
-    { type: 'menu', text: 'All Questions', icon: <FormatListNumbered size={20} /> },
-    { type: 'menu', text: 'Marked Questions', icon: <Bookmark size={20} /> },
+    {
+      type: 'menu',
+      text: 'All Questions',
+      icon: <FormatListNumbered size={20} />,
+      onClick: () => setExamMode(0)
+    },
+    {
+      type: 'menu',
+      text: 'Marked Questions',
+      icon: <Bookmark size={20} />,
+      onClick: () => setExamMode(1)
+    },
     { type: 'menu', text: 'Show Answer', icon: <Check size={20} />, onClick: onShowExplanation },
     { type: 'exam-grid' },
     {

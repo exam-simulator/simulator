@@ -1,5 +1,5 @@
 const Ajv = require('ajv')
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv({ allErrors: true, useDefaults: 'empty' })
 
 const schema = {
   definitions: {},
@@ -26,7 +26,7 @@ const schema = {
           $id: '#/properties/author/properties/name',
           type: 'string',
           title: 'The Author Name Schema',
-          default: '',
+          default: 'unknown',
           examples: ['benjaminadk']
         },
         image: {
@@ -49,7 +49,7 @@ const schema = {
       $id: '#/properties/title',
       type: 'string',
       title: 'The Title Schema',
-      default: 'Untitled Exam',
+      default: 'Untitled',
       examples: ['Oracle Database']
     },
     code: {

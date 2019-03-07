@@ -4,6 +4,8 @@ import { darken } from 'polished'
 import { Like } from 'styled-icons/boxicons-solid/Like'
 import { Dislike } from 'styled-icons/boxicons-solid/Dislike'
 import { Delete } from 'styled-icons/material/Delete'
+import { ArrowUp } from 'styled-icons/octicons/ArrowUp'
+import { ArrowDown } from 'styled-icons/octicons/ArrowDown'
 import formatDate from '../../../utils/formatDate'
 import Bar from './Bar'
 
@@ -43,6 +45,23 @@ const HistoryItemStyles = styled.div`
     font-weight: 700;
     color: ${props => props.theme.black};
   }
+  .stats {
+    display: flex;
+    align-items: center;
+    .stat {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+      svg {
+        margin-right: 0.2rem;
+      }
+      & > :last-child {
+        font: 1.1rem 'Open Sans';
+        font-weight: 700;
+        color: ${props => props.theme.black};
+      }
+    }
+  }
   .delete {
     color: ${props => props.theme.black};
     &:hover {
@@ -69,7 +88,16 @@ export default ({ report, index, onOpenConfirmReview, onDeleteClick }) => {
         label1="Time:"
         label2={`${Math.ceil(report.elapsed / 60)} Min`}
       />
-      <div />
+      <div className="stats">
+        <div className="stat">
+          <ArrowUp className="pass" size={20} />
+          <div>{report.correct.length}</div>
+        </div>
+        <div className="stat">
+          <ArrowDown className="fail" size={20} />
+          <div>{report.incorrect.length + report.incomplete.length}</div>
+        </div>
+      </div>
       <div className="delete" onClick={e => onDeleteClick(e, index)}>
         <Delete size={20} />
       </div>

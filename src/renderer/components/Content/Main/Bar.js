@@ -27,8 +27,8 @@ const BarStyles = styled.div`
   }
   & > :first-child,
   & > :last-child {
-    font: 1.25rem 'Open Sans';
-    font-weight: 600;
+    font: 1.1rem 'Open Sans';
+    font-weight: 700;
     color: ${props => props.theme.black};
   }
 `
