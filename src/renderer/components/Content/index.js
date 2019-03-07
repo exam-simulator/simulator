@@ -41,9 +41,11 @@ export default class Content extends React.Component {
           question={p.question}
           answers={p.answers}
           fillIns={p.fillIns}
+          orders={p.orders}
           onMultipleChoice={p.onMultipleChoice}
           onMultipleAnswer={p.onMultipleAnswer}
           onFillIn={p.onFillIn}
+          onListOrder={p.onListOrder}
         />
       )
     } else if (p.mode === 3) {

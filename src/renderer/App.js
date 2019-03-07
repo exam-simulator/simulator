@@ -1,5 +1,6 @@
 import React from 'react'
 import { remote } from 'electron'
+import isequal from 'lodash.isequal'
 import fs from 'fs'
 import createFileSystem from './utils/createFileSystem'
 import readExamsDir from './utils/readExamsDir'
@@ -189,6 +190,14 @@ export default class App extends React.Component {
     this.setState({ answers, fillIns })
   }
 
+  onListOrder = (order, i) => {
+    let { answers, orders } = this.state
+    const correct = order.map((el, j) => j)
+    answers[i] = [isequal(correct, order)]
+    orders[i] = order
+    this.setState({ answers, orders })
+  }
+
   onShowExplanation = () => {
     this.setState(
       ({ explanation }) => ({ explanation: !explanation }),
@@ -215,6 +224,7 @@ export default class App extends React.Component {
 
   /**
    * Set content of review screen 0 - report summary | 1 - exam
+   * @param reviewMode {number} - the new mode
    */
   setReviewMode = reviewMode => this.setState({ reviewMode })
 
@@ -252,6 +262,7 @@ export default class App extends React.Component {
           onMultipleChoice={this.onMultipleChoice}
           onMultipleAnswer={this.onMultipleAnswer}
           onFillIn={this.onFillIn}
+          onListOrder={this.onListOrder}
         />
       </Navigation>
     )

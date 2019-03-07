@@ -6,6 +6,7 @@ import Question from './Question'
 import MultipleChoice from './MultipleChoice'
 import MultipleAnswer from './MultipleAnswer'
 import FillIn from './FillIn'
+import ListOrder from './ListOrder'
 import Explanation from './Explanation'
 
 const TestStyles = styled.div`
@@ -22,9 +23,11 @@ export default ({
   question,
   answers,
   fillIns,
+  orders,
   onMultipleChoice,
   onMultipleAnswer,
-  onFillIn
+  onFillIn,
+  onListOrder
 }) => {
   return (
     <TestStyles>
@@ -49,6 +52,14 @@ export default ({
                 />
               ) : variant === 2 ? (
                 <FillIn fillIn={fillIns[question]} onFillIn={onFillIn} />
+              ) : variant === 3 ? (
+                <ListOrder
+                  index={i}
+                  choices={el.choices}
+                  answers={answers[i]}
+                  order={orders[i]}
+                  onListOrder={onListOrder}
+                />
               ) : null}
               {explanation ? (
                 <Slide direction="bottom">
