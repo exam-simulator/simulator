@@ -9,7 +9,8 @@ export default class Navigation extends React.Component {
   state = {
     open: true,
     confirmBeginExam: false,
-    confirmEndExam: false
+    confirmEndExam: false,
+    confirmReviewExam: false
   }
 
   toggleOpen = () => this.setState(({ open }) => ({ open: !open }))
@@ -17,6 +18,8 @@ export default class Navigation extends React.Component {
   setConfirmBeginExam = confirmBeginExam => this.setState({ confirmBeginExam })
 
   setConfirmEndExam = confirmEndExam => this.setState({ confirmEndExam })
+
+  setConfirmReviewExam = confirmReviewExam => this.setState({ confirmReviewExam })
 
   startExam = () => {
     this.setConfirmBeginExam(false)
@@ -29,10 +32,15 @@ export default class Navigation extends React.Component {
     this.props.endExam()
   }
 
+  reviewExam = () => {
+    this.setConfirmReviewExam(false)
+    this.props.initReview()
+  }
+
   render() {
     const {
       props: { children, onShowExplanation, ...rest },
-      state: { open, confirmBeginExam, confirmEndExam }
+      state: { open, confirmBeginExam, confirmEndExam, confirmReviewExam }
     } = this
     return (
       <>
@@ -48,7 +56,8 @@ export default class Navigation extends React.Component {
         <Main open={open}>
           {React.Children.map(children, child =>
             React.cloneElement(child, {
-              open
+              open,
+              setConfirmReviewExam: () => this.setConfirmReviewExam(true)
             })
           )}
         </Main>
@@ -68,6 +77,14 @@ export default class Navigation extends React.Component {
           buttons={['End Exam', 'Cancel']}
           onConfirm={this.endExam}
           onClose={() => this.setConfirmEndExam(false)}
+        />
+        <Confirm
+          show={confirmReviewExam}
+          title="Review Exam"
+          message="Do you want to review exam report ?"
+          buttons={['Review Exam', 'Cancel']}
+          onConfirm={this.reviewExam}
+          onClose={() => this.setConfirmReviewExam(false)}
         />
       </>
     )

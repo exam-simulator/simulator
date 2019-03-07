@@ -23,8 +23,10 @@ import { Pause } from 'styled-icons/material/Pause'
 import { Stop } from 'styled-icons/material/Stop'
 import { Close } from 'styled-icons/material/Close'
 import { QuestionMark } from 'styled-icons/boxicons-regular/QuestionMark'
+import { Report } from 'styled-icons/boxicons-solid/Report'
 import Grid from './Grid'
 import Stats from './Stats'
+import ReviewGrid from './ReviewGrid'
 
 const DrawerStyles = styled.div`
   position: fixed;
@@ -85,8 +87,6 @@ const MenuItem = styled.div`
   }
 `
 
-const ReviewGrid = styled.div``
-
 export default ({
   open,
   mode,
@@ -96,12 +96,19 @@ export default ({
   fillIns,
   orders,
   marked,
+  report,
+  reviewMode,
+  reviewType,
+  reviewQuestion,
   toggleOpen,
   setMode,
   setMainMode,
   setQuestion,
   loadLocalExam,
   onShowExplanation,
+  setReviewMode,
+  setReviewType,
+  setReviewQuestion,
   setConfirmBeginExam,
   setConfirmEndExam
 }) => {
@@ -133,7 +140,15 @@ export default ({
       onClick: setConfirmBeginExam
     },
     { type: 'stats' },
-    { type: 'menu', text: 'Back to Main', icon: <ArrowBack size={20} />, onClick: () => setMode(0) }
+    {
+      type: 'menu',
+      text: 'Back to Main',
+      icon: <ArrowBack size={20} />,
+      onClick: () => {
+        setMode(0)
+        setMainMode(0)
+      }
+    }
   ]
 
   // Exam Menu show when mode === 2
@@ -149,11 +164,49 @@ export default ({
 
   // Review Menu show when mode === 3
   const menu3 = [
-    { type: 'menu', text: 'All Questions', icon: <FormatListNumbered size={20} /> },
-    { type: 'menu', text: 'Incorrect Answers', icon: <Close size={20} /> },
-    { type: 'menu', text: 'Incomplete', icon: <QuestionMark size={20} /> },
+    {
+      type: 'menu',
+      text: 'All Questions',
+      icon: <FormatListNumbered size={20} />,
+      onClick: () => {
+        setReviewMode(1)
+        setReviewType(0)
+      }
+    },
+    {
+      type: 'menu',
+      text: 'Incorrect Answers',
+      icon: <Close size={20} />,
+      onClick: () => {
+        setReviewMode(1)
+        setReviewType(1)
+      }
+    },
+    {
+      type: 'menu',
+      text: 'Incomplete',
+      icon: <QuestionMark size={20} />,
+      onClick: () => {
+        setReviewMode(1)
+        setReviewType(2)
+      }
+    },
     { type: 'review-grid' },
-    { type: 'menu', text: 'Back to Main', icon: <ArrowBack size={20} />, onClick: () => setMode(0) }
+    {
+      type: 'menu',
+      text: 'Report Summary',
+      icon: <Report size={20} />,
+      onClick: () => setReviewMode(0)
+    },
+    {
+      type: 'menu',
+      text: 'Back to Main',
+      icon: <ArrowBack size={20} />,
+      onClick: () => {
+        setMode(0)
+        setMainMode(0)
+      }
+    }
   ]
 
   const menu =
@@ -189,7 +242,17 @@ export default ({
               />
             )
           } else if (el.type === 'review-grid') {
-            return <ReviewGrid key={i} open={open} />
+            return (
+              <ReviewGrid
+                key={i}
+                open={open}
+                report={report}
+                reviewQuestion={reviewQuestion}
+                setReviewMode={setReviewMode}
+                setReviewType={setReviewType}
+                setReviewQuestion={setReviewQuestion}
+              />
+            )
           }
         })}
       </MainMenu>

@@ -2,6 +2,11 @@ import isequal from 'lodash.isequal'
 
 /**
  * Aggegate a report summarizing exam performance
+ * @param exam {object} - exam object
+ * @param answers {boolean[][]} - 2 dimensional array answers to each question
+ * @param fillIns {string[]} - answers to fill in the blank questions
+ * @param orders {boolean[]} - answers to order list questions
+ * @param time {number} - time in seconds remaining from exam time
  */
 export default (exam, answers, fillIns, orders, time) => {
   const correct = []
@@ -33,6 +38,7 @@ export default (exam, answers, fillIns, orders, time) => {
     code: exam.code,
     pass: exam.pass,
     time: exam.time,
+    testLength: exam.test.length,
     status,
     score,
     correct,

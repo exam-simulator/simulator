@@ -18,14 +18,15 @@ const mainWin = remote.BrowserWindow.fromId(1)
 
 export default class App extends React.Component {
   state = {
+    loading: true,
     mode: 0,
     mainMode: 0,
-    reviewMode: 0,
-    loading: true,
     exams: [],
     history: [],
     sessions: [],
     options: null,
+    indexExam: null,
+    indexHistory: null,
     exam: null,
     answers: [],
     fillIns: [],
@@ -34,8 +35,10 @@ export default class App extends React.Component {
     question: 0,
     time: 0,
     explanation: false,
-    indexExam: null,
-    indexHistory: null
+    report: null,
+    reviewMode: 0,
+    reviewType: 0,
+    reviewQuestion: 0
   }
 
   explanation = React.createRef()
@@ -210,6 +213,15 @@ export default class App extends React.Component {
     this.setState({ mode: 3, exam, report })
   }
 
+  /**
+   * Set content of review screen 0 - report summary | 1 - exam
+   */
+  setReviewMode = reviewMode => this.setState({ reviewMode })
+
+  setReviewType = reviewType => this.setState({ reviewType })
+
+  setRevewQuestion = reviewQuestion => this.setState({ reviewQuestion })
+
   render() {
     const { loading, ...rest } = this.state
     if (loading) {
@@ -225,6 +237,10 @@ export default class App extends React.Component {
         loadLocalExam={this.loadLocalExam}
         onShowExplanation={this.onShowExplanation}
         endExam={this.endExam}
+        initReview={this.initReview}
+        setReviewMode={this.setReviewMode}
+        setReviewType={this.setReviewType}
+        setRevewQuestion={this.setReviewQuestion}
       >
         <Content
           {...rest}
@@ -236,7 +252,6 @@ export default class App extends React.Component {
           onMultipleChoice={this.onMultipleChoice}
           onMultipleAnswer={this.onMultipleAnswer}
           onFillIn={this.onFillIn}
-          initReview={this.initReview}
         />
       </Navigation>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import analyzeGridItem from '../../../utils/analyzeGridItem'
 
-const GridStyles = styled.div`
+export const GridStyles = styled.div`
   height: calc(100vh - 35rem);
   border-top: 1px solid ${props => props.theme.grey[2]};
   border-bottom: 1px solid ${props => props.theme.grey[2]};
@@ -24,10 +24,12 @@ const GridStyles = styled.div`
         font: 0.9rem 'Open Sans';
       }
     }
-    .complete {
+    .complete,
+    .correct {
       background: ${props => props.theme.primary};
     }
-    .bookmarked {
+    .bookmarked,
+    .incorrect {
       background: ${props => props.theme.secondary};
     }
     .incomplete {
@@ -44,7 +46,7 @@ const GridStyles = styled.div`
   }
 `
 
-const GridItem = styled.div`
+export const GridItem = styled.div`
   width: 4.5rem;
   height: 4.5rem;
   display: grid;

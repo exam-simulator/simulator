@@ -4,6 +4,7 @@ import Exams from './Main/Exams'
 import History from './Main/History'
 import Cover from './Cover'
 import Exam from './Exam'
+import Review from './Review'
 
 const ContentStyles = styled.div`
   display: grid;
@@ -13,12 +14,6 @@ const ContentStyles = styled.div`
   padding-right: ${props => (props.open ? '28rem' : '7rem')};
   transition: 0.3s;
 `
-
-const ReviewStyles = styled.div``
-
-function Review({ report }) {
-  return <ReviewStyles>{JSON.stringify(report)}</ReviewStyles>
-}
 
 export default class Content extends React.Component {
   renderContent = () => {
@@ -31,7 +26,7 @@ export default class Content extends React.Component {
           <History
             history={p.history}
             setIndexHistory={p.setIndexHistory}
-            initReview={p.initReview}
+            setConfirmReviewExam={p.setConfirmReviewExam}
           />
         )
       }
@@ -52,7 +47,7 @@ export default class Content extends React.Component {
         />
       )
     } else if (p.mode === 3) {
-      return <Review report={p.report} />
+      return <Review reviewMode={p.reviewMode} report={p.report} />
     } else {
       return null
     }
