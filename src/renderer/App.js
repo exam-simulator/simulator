@@ -29,6 +29,7 @@ export default class App extends React.Component {
     options: null,
     indexExam: null,
     indexHistory: null,
+    examMode: 0,
     exam: null,
     answers: [],
     fillIns: [],
@@ -110,6 +111,12 @@ export default class App extends React.Component {
   }
 
   /**
+   * Set exam mode 0 - all questions | 1 - bookmarked questions
+   * @param examMode {number} - the new mode
+   */
+  setExamMode = examMode => this.setState({ examMode })
+
+  /**
    * Prepare data structures for exam, shows cover screen
    * @param i {number} - index of exam
    */
@@ -162,6 +169,21 @@ export default class App extends React.Component {
       },
       () => writeData('history', history)
     )
+  }
+
+  onBookmarkQuestion = (i, add) => {
+    const { examMode, marked } = this.state
+    let newMarked = marked.slice(0)
+    if (add) {
+      newMarked.push(i)
+    } else {
+      newMarked = marked.filter(el => el !== i)
+      if (examMode === 1) {
+        this.setExamMode(0)
+      }
+    }
+    newMarked.sort((a, b) => a - b)
+    this.setState({ marked: newMarked })
   }
 
   onMultipleChoice = answer => {
@@ -226,6 +248,9 @@ export default class App extends React.Component {
     })
   }
 
+  /**
+   * Initialize review mode and fetch report
+   */
   initReview = () => {
     const { exams, history, indexHistory } = this.state
     const report = history[indexHistory]
@@ -271,6 +296,7 @@ export default class App extends React.Component {
           setIndexExam={this.setIndexExam}
           setIndexHistory={this.setIndexHistory}
           initExam={this.initExam}
+          onBookmarkQuestion={this.onBookmarkQuestion}
           onMultipleChoice={this.onMultipleChoice}
           onMultipleAnswer={this.onMultipleAnswer}
           onFillIn={this.onFillIn}

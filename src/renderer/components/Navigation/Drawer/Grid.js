@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { lighten } from 'polished'
 import analyzeGridItem from '../../../utils/analyzeGridItem'
 
 export const GridStyles = styled.div`
@@ -19,18 +20,20 @@ export const GridStyles = styled.div`
         width: 1rem;
         height: 1rem;
         margin-right: 0.25rem;
+        border: 0.5px solid ${props => props.theme.grey[2]};
       }
       & > :last-child {
         font: 0.9rem 'Open Sans';
+        font-weight: 600;
       }
     }
     .complete,
     .correct {
-      background: ${props => props.theme.primary};
+      background: ${props => lighten(0.1, props.theme.primary)};
     }
     .bookmarked,
     .incorrect {
-      background: ${props => props.theme.secondary};
+      background: ${props => lighten(0.25, props.theme.tertiary)};
     }
     .incomplete {
       background: ${props => props.theme.grey[2]};
@@ -55,6 +58,7 @@ export const GridItem = styled.div`
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   background: ${props => props.background};
+  color: #333;
   border: 1px solid ${props => props.theme.grey[3]};
   font: 1rem 'Open Sans';
   font-weight: 700;

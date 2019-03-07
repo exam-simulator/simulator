@@ -15,16 +15,27 @@ const TopDisplayStyles = styled.div`
   }
   & > :last-child {
     margin-right: 5rem;
-    color: ${props => props.theme.grey[10]};
+    color: ${props => (props.bookmarked ? props.theme.tertiary : props.theme.grey[10])};
+    transition: 0.3s;
     cursor: pointer;
+    &:hover {
+      color: ${props => props.theme.tertiary};
+    }
   }
 `
 
-export default ({ question, length }) => (
-  <TopDisplayStyles>
-    <div>
-      Question {question + 1} of {length}
-    </div>
-    <BookmarkBorder size={40} />
-  </TopDisplayStyles>
-)
+export default ({ question, length, marked, onBookmarkQuestion }) => {
+  const bookmarked = marked.includes(question)
+  return (
+    <TopDisplayStyles bookmarked={bookmarked}>
+      <div>
+        Question {question + 1} of {length}
+      </div>
+      {bookmarked ? (
+        <Bookmark size={40} onClick={() => onBookmarkQuestion(question, false)} />
+      ) : (
+        <BookmarkBorder size={40} onClick={() => onBookmarkQuestion(question, true)} />
+      )}
+    </TopDisplayStyles>
+  )
+}

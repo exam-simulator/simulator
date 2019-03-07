@@ -5,7 +5,7 @@ import isequal from 'lodash.isequal'
 import createExplanation from '../../../utils/createExplanation'
 
 const ExplanationStyles = styled.div`
-  background: ${props => lighten(0.25, props.theme.tertiary)};
+  background: ${props => lighten(0.25, props.theme.quatro)};
   border: 1px solid ${props => props.theme.grey[2]};
   margin-top: 5rem;
   padding: 1rem;
@@ -13,7 +13,7 @@ const ExplanationStyles = styled.div`
   .status {
     text-transform: uppercase;
     font-weight: 700;
-    color: ${props => (props.status ? darken(0.1, props.theme.tertiary) : props.theme.secondary)};
+    color: ${props => (props.status ? darken(0.1, props.theme.quatro) : props.theme.secondary)};
   }
   .correct {
     font-weight: 700;

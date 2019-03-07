@@ -8,7 +8,7 @@ export default (question, answers, fillIns, orders, marked) => {
     }
   })
   if (marked.indexOf(question) !== -1) {
-    return lighten(0.1, theme.secondary)
+    return lighten(0.25, theme.tertiary)
   } else if (incomplete.indexOf(question) !== -1) {
     return theme.grey[1]
   } else {

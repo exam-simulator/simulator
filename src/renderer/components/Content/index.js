@@ -46,6 +46,8 @@ export default class Content extends React.Component {
           answers={p.answers}
           fillIns={p.fillIns}
           orders={p.orders}
+          marked={p.marked}
+          onBookmarkQuestion={p.onBookmarkQuestion}
           onMultipleChoice={p.onMultipleChoice}
           onMultipleAnswer={p.onMultipleAnswer}
           onFillIn={p.onFillIn}

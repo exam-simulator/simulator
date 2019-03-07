@@ -24,6 +24,8 @@ export default ({
   answers,
   fillIns,
   orders,
+  marked,
+  onBookmarkQuestion,
   onMultipleChoice,
   onMultipleAnswer,
   onFillIn,
@@ -31,7 +33,12 @@ export default ({
 }) => {
   return (
     <TestStyles>
-      <TopDisplay question={question} length={exam.test.length} />
+      <TopDisplay
+        question={question}
+        length={exam.test.length}
+        marked={marked}
+        onBookmarkQuestion={onBookmarkQuestion}
+      />
       {exam.test.map((el, i) => {
         if (i === question) {
           const { variant } = el

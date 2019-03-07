@@ -21,7 +21,7 @@ const BarStyles = styled.div`
       background: ${props =>
         (props.type === 'score' && props.value >= props.threshold) ||
         (props.type === 'time' && props.value < props.threshold)
-          ? props.theme.tertiary
+          ? props.theme.quatro
           : props.theme.secondary};
     }
   }

@@ -33,7 +33,7 @@ const HistoryItemStyles = styled.div`
     font-weight: 700;
   }
   .pass {
-    color: ${props => darken(0.1, props.theme.tertiary)};
+    color: ${props => darken(0.1, props.theme.quatro)};
   }
   .fail {
     color: ${props => props.theme.secondary};

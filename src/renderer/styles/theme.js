@@ -50,7 +50,8 @@ export default {
   black: '#333333',
   primary: '#FFF28F',
   secondary: '#DE4545',
-  tertiary: '#7AFF6B',
+  tertiary: '#2484EB',
+  quatro: '#7AFF6B',
   borderRadius: '3px',
   shadows
 }
