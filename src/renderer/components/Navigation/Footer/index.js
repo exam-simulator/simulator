@@ -20,9 +20,10 @@ export default ({ open, mode, exam, question, time, setQuestion }) => (
       <ExamFooter
         open={open}
         time={time}
-        question={question}
-        length={exam.test.length}
-        setQuestion={setQuestion}
+        onFirstQuestion={() => setQuestion(0, 0)}
+        onPrevQuestion={() => setQuestion(question - 1, 1)}
+        onNextQuestion={() => setQuestion(question + 1, 2)}
+        onLastQuestion={() => setQuestion(exam.test.length - 1, 3)}
       />
     ) : null}
   </FooterStyles>

@@ -50,23 +50,30 @@ const ExamFooter = styled.div`
   }
 `
 
-export default ({ open, time, question, length, setQuestion }) => (
+export default ({
+  open,
+  time,
+  onFirstQuestion,
+  onPrevQuestion,
+  onNextQuestion,
+  onLastQuestion
+}) => (
   <ExamFooter open={open} warning={time < 120}>
     <div className="timer">
       <Timer size={30} />
       <div>{formatTimer(time)}</div>
     </div>
     <div className="arrows">
-      <div className="arrow" onClick={() => setQuestion(0, 0)}>
+      <div className="arrow" onClick={onFirstQuestion}>
         <SkipPrevious size={30} />
       </div>
-      <div className="arrow" onClick={() => setQuestion(question - 1, 1)}>
+      <div className="arrow" onClick={onPrevQuestion}>
         <KeyboardArrowLeft size={30} />
       </div>
-      <div className="arrow" onClick={() => setQuestion(question + 1, 2)}>
+      <div className="arrow" onClick={onNextQuestion}>
         <KeyboardArrowRight size={30} />
       </div>
-      <div className="arrow" onClick={() => setQuestion(length - 1, 3)}>
+      <div className="arrow" onClick={onLastQuestion}>
         <SkipNext size={30} />
       </div>
     </div>

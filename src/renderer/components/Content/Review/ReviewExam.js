@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Slide } from '../../../styles/Slide'
+import TopDisplay from './TopDisplay'
 import Question from '../Exam/Question'
 import MultipleChoice from '../Exam/MultipleChoice'
 import MultipleAnswer from '../Exam/MultipleAnswer'
@@ -17,7 +18,7 @@ const ReviewExamStyles = styled.div`
 
 export default ({ exam, report, reviewQuestion }) => (
   <ReviewExamStyles>
-    <div>top</div>
+    <TopDisplay exam={exam} reviewQuestion={reviewQuestion} />
     {exam.test.map((el, i) => {
       if (i === reviewQuestion) {
         const { variant } = el

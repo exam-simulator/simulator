@@ -27,7 +27,7 @@ const HistoryGroupStyles = styled.div`
     .title {
       font: 2rem 'Open Sans';
       font-weight: 700;
-      color: ${props => props.theme.black};
+      color: ${props => props.theme.grey[12]};
     }
     .expand {
       width: 4rem;

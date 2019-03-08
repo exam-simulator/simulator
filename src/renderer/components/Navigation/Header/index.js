@@ -63,20 +63,35 @@ function ExamHeader({ exam }) {
 const ReviewHeaderStyles = styled.div`
   height: 5rem;
   display: grid;
+  grid-template-columns: 6rem auto 1fr;
   align-items: center;
+  .image {
+    justify-self: center;
+    width: 3rem;
+    height: 3rem;
+  }
   .title {
     font: 2rem 'Open Sans';
     font-weight: 700;
     color: ${props => props.theme.black};
     margin-left: 1rem;
   }
+  .subtitle {
+    font: 1.35rem 'Open Sans';
+    font-weight: 700;
+    color: ${props => props.theme.grey[10]};
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+  }
 `
 
-function ReviewHeader({ reviewMode }) {
+function ReviewHeader({ exam, reviewMode }) {
   const title = reviewMode === 0 ? 'Review Summary' : 'Review Exam'
   return (
     <ReviewHeaderStyles>
-      <div className="title">{title}</div>
+      <img className="image" src={exam.image || BLUE_LOGO_PATH} />
+      <div className="title">{exam.title}</div>
+      <div className="subtitle">{title}</div>
     </ReviewHeaderStyles>
   )
 }
@@ -88,7 +103,7 @@ export default ({ open, mode, mainMode, exam, reviewMode }) => (
     ) : mode === 2 ? (
       <ExamHeader exam={exam} />
     ) : mode === 3 ? (
-      <ReviewHeader reviewMode={reviewMode} />
+      <ReviewHeader exam={exam} reviewMode={reviewMode} />
     ) : null}
   </HeaderStyles>
 )
