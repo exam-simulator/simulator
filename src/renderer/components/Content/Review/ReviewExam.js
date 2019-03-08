@@ -6,6 +6,7 @@ import MultipleChoice from '../Exam/MultipleChoice'
 import MultipleAnswer from '../Exam/MultipleAnswer'
 import FillIn from '../Exam/FillIn'
 import StaticList from './StaticList'
+import Explanation from '../Exam/Explanation'
 
 const ReviewExamStyles = styled.div`
   width: 100%;
@@ -32,6 +33,9 @@ export default ({ exam, report, reviewQuestion }) => (
             ) : variant === 3 ? (
               <StaticList choices={el.choices} order={report.orders[i]} />
             ) : null}
+            <Slide direction="bottom">
+              <Explanation explanationRef={null} question={el} answers={report.answers[i]} />
+            </Slide>
           </Slide>
         )
       } else {
