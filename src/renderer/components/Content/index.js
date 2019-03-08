@@ -22,7 +22,14 @@ export default class Content extends React.Component {
     const p = this.props
     if (p.mode === 0) {
       if (p.mainMode === 0) {
-        return <Exams exams={p.exams} setIndexExam={p.setIndexExam} initExam={p.initExam} />
+        return (
+          <Exams
+            exams={p.exams}
+            setIndexExam={p.setIndexExam}
+            initExam={p.initExam}
+            setConfirmDeleteExam={p.setConfirmDeleteExam}
+          />
+        )
       } else if (p.mainMode === 1) {
         return (
           <History

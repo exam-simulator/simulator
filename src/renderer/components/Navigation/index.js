@@ -12,7 +12,8 @@ export default class Navigation extends React.Component {
     confirmEndExam: false,
     confirmReviewExam: false,
     confirmSaveSession: false,
-    confirmPauseTimer: false
+    confirmPauseTimer: false,
+    confirmDeleteExam: false
   }
 
   toggleOpen = () => this.setState(({ open }) => ({ open: !open }))
@@ -24,6 +25,8 @@ export default class Navigation extends React.Component {
   setConfirmReviewExam = confirmReviewExam => this.setState({ confirmReviewExam })
 
   setConfirmSaveSession = confirmSaveSession => this.setState({ confirmSaveSession })
+
+  setConfirmDeleteExam = confirmDeleteExam => this.setState({ confirmDeleteExam })
 
   startExam = () => {
     this.setConfirmBeginExam(false)
@@ -56,6 +59,11 @@ export default class Navigation extends React.Component {
     this.props.initTimer()
   }
 
+  deleteExam = () => {
+    this.setState({ confirmDeleteExam: false })
+    this.props.deleteExam()
+  }
+
   render() {
     const {
       props: { children, onShowExplanation, ...rest },
@@ -65,7 +73,8 @@ export default class Navigation extends React.Component {
         confirmEndExam,
         confirmReviewExam,
         confirmSaveSession,
-        confirmPauseTimer
+        confirmPauseTimer,
+        confirmDeleteExam
       }
     } = this
     return (
@@ -85,7 +94,8 @@ export default class Navigation extends React.Component {
           {React.Children.map(children, child =>
             React.cloneElement(child, {
               open,
-              setConfirmReviewExam: () => this.setConfirmReviewExam(true)
+              setConfirmReviewExam: () => this.setConfirmReviewExam(true),
+              setConfirmDeleteExam: () => this.setConfirmDeleteExam(true)
             })
           )}
         </Main>
@@ -93,7 +103,7 @@ export default class Navigation extends React.Component {
         <Confirm
           show={confirmBeginExam}
           title="Start Exam"
-          message={`Do you want to start ${rest.exam ? rest.exam.title : ''} ?`}
+          message={`Do you want to start ${rest.exam ? rest.exam.title : 'this exam'} ?`}
           buttons={['Start Exam', 'Cancel']}
           onConfirm={this.startExam}
           onClose={() => this.setConfirmBeginExam(false)}
@@ -129,6 +139,14 @@ export default class Navigation extends React.Component {
           buttons={['Resume Exam']}
           onConfirm={this.unPauseExam}
           onClose={() => {}}
+        />
+        <Confirm
+          show={confirmDeleteExam}
+          title="Delete Exam"
+          message={`Do you want to delete ${rest.exam ? rest.exam.title : 'this exam'} ?`}
+          buttons={['Delete Exam', 'Cancel']}
+          onConfirm={this.deleteExam}
+          onClose={() => this.setConfirmDeleteExam(false)}
         />
       </>
     )

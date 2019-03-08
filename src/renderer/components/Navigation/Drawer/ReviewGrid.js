@@ -8,6 +8,7 @@ const ReviewGridStyles = styled(GridStyles)``
 export default ({
   open,
   report,
+  reviewMode,
   reviewQuestion,
   setReviewMode,
   setReviewType,
@@ -39,11 +40,11 @@ export default ({
                 <GridItem
                   key={i}
                   background={background}
-                  selected={i === reviewQuestion}
+                  selected={reviewMode === 1 ? i === reviewQuestion : false}
                   onClick={() => {
                     setReviewMode(1)
                     setReviewType(0)
-                    setReviewQuestion(i)
+                    setReviewQuestion(i, 'grid')
                   }}
                 >
                   {i + 1}

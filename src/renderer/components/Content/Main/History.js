@@ -26,7 +26,7 @@ export default ({ history, setIndexHistory, setConfirmReviewExam }) => {
     )
     return (
       <HistoryStyles>
-        {uniqueFilenames.sort().map((uf, i) => {
+        {uniqueFilenames.map((uf, i) => {
           const reports = groupedByFilename[uf]
           const averageTime = Math.round(averageTimes[i] / reports[0].time)
           return (

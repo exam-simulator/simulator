@@ -98,6 +98,7 @@ export default ({
   orders,
   marked,
   report,
+  reviewMode,
   reviewQuestion,
   toggleOpen,
   setMode,
@@ -269,6 +270,7 @@ export default ({
                 key={i}
                 open={open}
                 report={report}
+                reviewMode={reviewMode}
                 reviewQuestion={reviewQuestion}
                 setReviewMode={setReviewMode}
                 setReviewType={setReviewType}

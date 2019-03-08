@@ -82,7 +82,7 @@ const ExamItemStyles = styled.div`
   }
 `
 
-export default ({ exam, setIndexExam, initExam }) => {
+export default ({ exam, setIndexExam, initExam, setConfirmDeleteExam }) => {
   const [expand, setExpand] = useState(false)
 
   const toggleExpand = e => {
@@ -92,6 +92,7 @@ export default ({ exam, setIndexExam, initExam }) => {
 
   const onDeleteClick = e => {
     e.stopPropagation()
+    setConfirmDeleteExam()
     setIndexExam()
   }
 

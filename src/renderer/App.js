@@ -8,6 +8,7 @@ import readHistoryFile from './utils/readHistoryFile'
 import readSessionsFile from './utils/readSessionsFile'
 import readOptionsFile from './utils/readOptionsFile'
 import writeData from './utils/writeData'
+import deleteExam from './utils/deleteExam'
 import showFileDialog from './utils/showFileDialog'
 import analyzeAnswers from './utils/analyzeAnswers'
 import examDataStuctures from './utils/examDataStuctures'
@@ -83,6 +84,17 @@ export default class App extends React.Component {
     }
   }
 
+  deleteExam = async () => {
+    const { exams, indexExam, sessions, history } = this.state
+    const success = await deleteExam(exams, indexExam, sessions, history)
+    if (success) {
+      this.setExams()
+      this.setHistory()
+      this.setSessions()
+    }
+    this.setState({ indexExam: null })
+  }
+
   setMode = mode => this.setState({ mode })
 
   setMainMode = mainMode => this.setState({ mainMode })
@@ -93,7 +105,7 @@ export default class App extends React.Component {
 
   /**
    * Sets the question index
-   * @param newQuestion {integer} - index to set question to
+   * @param question {integer} - index to set question to
    * @param source {string|number} - 'grid' = direct question click | 0 = skip to start | 1 = prev | 2 = next | 3 = skip to end
    */
   setQuestion = (question, source) => {
@@ -252,6 +264,9 @@ export default class App extends React.Component {
     this.setState({ answers, orders })
   }
 
+  /**
+   * Reveal answer and scroll to it
+   */
   onShowExplanation = () => {
     this.setState(
       ({ explanation }) => ({ explanation: !explanation }),
@@ -269,6 +284,9 @@ export default class App extends React.Component {
     )
   }
 
+  /**
+   * Write exam state to disk to resume later
+   */
   saveSession = () => {
     clearInterval(this.timer)
     const { sessions } = this.state
@@ -286,18 +304,43 @@ export default class App extends React.Component {
     const { exams, history, indexHistory } = this.state
     const report = history[indexHistory]
     const exam = exams.find(el => el.filename === report.filename)
-    this.setState({ mode: 3, exam, report })
+    this.setState({ mode: 3, exam, report, reviewMode: 0, reviewType: 0, reviewQuestion: 0 })
   }
 
   /**
-   * Set content of review screen 0 - report summary | 1 - exam
+   * Set content of review screen - 0 = report summary | 1 = exam
    * @param reviewMode {number} - the new mode
    */
   setReviewMode = reviewMode => this.setState({ reviewMode })
-
+  /**
+   * Set type of review - 0 = all | 1 = incorrect | 2 = incomplete
+   * @param reviewType {number} - the new type
+   */
   setReviewType = reviewType => this.setState({ reviewType })
 
-  setReviewQuestion = reviewQuestion => this.setState({ reviewQuestion })
+  /**
+   * Sets the question index
+   * @param reviewQuestion {integer} - index to set review question to
+   * @param source {string|number} - 'grid' = direct review question click | 0 = skip to start | 1 = prev | 2 = next | 3 = skip to end
+   */
+  setReviewQuestion = (reviewQuestion, source) => {
+    const {
+      exam: { test },
+      reviewType
+    } = this.state
+    // direct question click
+    if (source === 'grid') {
+      return this.setState({ reviewQuestion })
+    }
+    if (reviewQuestion < 0 || reviewQuestion > test.length - 1) {
+      return
+    }
+    // buttons and sliders
+    // all questions mode
+    if (reviewType === 0) {
+      this.setState({ reviewQuestion })
+    }
+  }
 
   render() {
     const { loading, ...rest } = this.state
@@ -321,6 +364,7 @@ export default class App extends React.Component {
         setReviewType={this.setReviewType}
         setReviewQuestion={this.setReviewQuestion}
         saveSession={this.saveSession}
+        deleteExam={this.deleteExam}
       >
         <Content
           {...rest}

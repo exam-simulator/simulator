@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ExamFooter from './ExamFooter'
+import ReviewFooter from './ReviewFooter'
 
 const FooterStyles = styled.div`
   position: fixed;
@@ -14,7 +15,16 @@ const FooterStyles = styled.div`
   border-top: 1px solid ${props => props.theme.grey[1]};
 `
 
-export default ({ open, mode, exam, question, time, setQuestion }) => (
+export default ({
+  open,
+  mode,
+  exam,
+  question,
+  reviewQuestion,
+  time,
+  setQuestion,
+  setReviewQuestion
+}) => (
   <FooterStyles open={open}>
     {mode === 2 ? (
       <ExamFooter
@@ -24,6 +34,14 @@ export default ({ open, mode, exam, question, time, setQuestion }) => (
         onPrevQuestion={() => setQuestion(question - 1, 1)}
         onNextQuestion={() => setQuestion(question + 1, 2)}
         onLastQuestion={() => setQuestion(exam.test.length - 1, 3)}
+      />
+    ) : mode === 3 ? (
+      <ReviewFooter
+        open={open}
+        onFirstQuestion={() => setReviewQuestion(0, 0)}
+        onPrevQuestion={() => setReviewQuestion(reviewQuestion - 1, 1)}
+        onNextQuestion={() => setReviewQuestion(reviewQuestion + 1, 2)}
+        onLastQuestion={() => setReviewQuestion(exam.test.length - 1, 3)}
       />
     ) : null}
   </FooterStyles>

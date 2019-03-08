@@ -9,7 +9,7 @@ const ExamStyles = styled.div`
   overflow-y: auto;
 `
 
-export default ({ exams, setIndexExam, initExam }) => {
+export default ({ exams, setIndexExam, initExam, setConfirmDeleteExam }) => {
   return (
     <ExamStyles rows={Math.ceil(exams.length / 2)}>
       {exams.map((el, i) => (
@@ -19,6 +19,7 @@ export default ({ exams, setIndexExam, initExam }) => {
           index={i}
           initExam={() => initExam(i)}
           setIndexExam={() => setIndexExam(i)}
+          setConfirmDeleteExam={setConfirmDeleteExam}
         />
       ))}
     </ExamStyles>
