@@ -128,7 +128,7 @@ export default class App extends React.Component {
     if (question < 0 || question > test.length - 1) {
       return
     }
-    // buttons and sliders
+    // parse question from subset
     // all questions mode
     if (examMode === 0) {
       this.setState({ question, explanation: false })
@@ -360,7 +360,7 @@ export default class App extends React.Component {
     if (reviewQuestion < 0 || reviewQuestion > testLength - 1) {
       return
     }
-    // buttons and sliders
+    // parse question from subset
     // all questions mode
     if (reviewType === 0) {
       this.setState({ reviewQuestion })

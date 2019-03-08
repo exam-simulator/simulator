@@ -13,6 +13,7 @@ const HistoryGroupStyles = styled.div`
   border-radius: ${props => props.theme.borderRadius};
   margin-bottom: 3rem;
   transition: 0.3s;
+  cursor: pointer;
   .group-data {
     height: 5rem;
     display: grid;

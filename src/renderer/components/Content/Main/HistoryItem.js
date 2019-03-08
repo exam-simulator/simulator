@@ -40,11 +40,6 @@ const HistoryItemStyles = styled.div`
   .fail {
     color: ${props => props.theme.secondary};
   }
-  .score {
-    font: 1.5rem 'Open Sans';
-    font-weight: 700;
-    color: ${props => props.theme.black};
-  }
   .stats {
     display: flex;
     align-items: center;

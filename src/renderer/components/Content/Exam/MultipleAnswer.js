@@ -32,16 +32,21 @@ export default ({ review, question, answers, onMultipleAnswer }) => {
   }
 
   return (
-    <MultipleStyles>
+    <div>
       {question.choices.map((el, i) => (
-        <div key={i} className="choice" onClick={() => onClick(i)}>
+        <MultipleStyles
+          key={i}
+          review={review}
+          correct={question.answer[i]}
+          onClick={() => onClick(i)}
+        >
           {values.includes(i) ? <CheckBox size={20} /> : <CheckBoxOutlineBlank size={20} />}
           <div className="text">
             <div>{el.label}.</div>
             <div>{el.text}</div>
           </div>
-        </div>
+        </MultipleStyles>
       ))}
-    </MultipleStyles>
+    </div>
   )
 }

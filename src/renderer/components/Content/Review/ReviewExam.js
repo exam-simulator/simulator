@@ -16,9 +16,9 @@ const ReviewExamStyles = styled.div`
   overflow-y: auto;
 `
 
-export default ({ exam, report, reviewQuestion }) => (
+export default ({ exam, report, reviewQuestion, reviewType }) => (
   <ReviewExamStyles>
-    <TopDisplay exam={exam} reviewQuestion={reviewQuestion} />
+    <TopDisplay exam={exam} reviewQuestion={reviewQuestion} reviewType={reviewType} />
     {exam.test.map((el, i) => {
       if (i === reviewQuestion) {
         const { variant } = el

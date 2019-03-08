@@ -37,8 +37,8 @@ const ExamItemStyles = styled.div`
     }
     .stat {
       justify-self: flex-start;
-      font: 1.25rem 'Open Sans';
-      font-weight: 600;
+      font: 1.1rem 'Open Sans';
+      font-weight: 700;
       color: ${props => props.theme.black};
     }
     .actions {
@@ -75,8 +75,8 @@ const ExamItemStyles = styled.div`
     }
     .stat {
       justify-self: flex-start;
-      font: 1.25rem 'Open Sans';
-      font-weight: 600;
+      font: 1.1rem 'Open Sans';
+      font-weight: 700;
       color: ${props => props.theme.black};
     }
   }
@@ -101,7 +101,7 @@ export default ({ exam, setIndexExam, initExam, setConfirmDeleteExam }) => {
       <div className="main">
         <img className="image" src={exam.image || BLUE_LOGO_PATH} alt={exam.title} />
         <div className="title">{exam.title}</div>
-        <div className="stat">Questions: {exam.test.length}</div>
+        <div className="stat">{exam.code ? `Code: ${exam.code}` : ''}</div>
         <div className="stat">Created {formatCreatedAt(exam.createdAt)} ago</div>
         <div className="actions delete" onClick={onDeleteClick}>
           <Delete size={20} />
@@ -114,7 +114,7 @@ export default ({ exam, setIndexExam, initExam, setConfirmDeleteExam }) => {
         <div className="description">{exam.description}</div>
         <div />
         <div className="stat">Time: {exam.time} Min</div>
-        <div className="stat">Passing Score: {exam.pass}%</div>
+        <div className="stat">Passing: {exam.pass}%</div>
         <div />
         <div />
       </div>
