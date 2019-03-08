@@ -25,7 +25,7 @@ const FillInStyles = styled.div`
   }
 `
 
-export default ({ fillIn, onFillIn }) => {
+export default ({ review, fillIn, onFillIn }) => {
   const inputRef = useRef(null)
   const [focus, setFocus] = useState(false)
   const [value, setValue] = useState('')
@@ -35,6 +35,9 @@ export default ({ fillIn, onFillIn }) => {
   }, [])
 
   useEffect(() => {
+    if (review) {
+      return
+    }
     setTimeout(() => {
       inputRef.current.focus()
       setFocus(true)
@@ -42,6 +45,9 @@ export default ({ fillIn, onFillIn }) => {
   }, [])
 
   const onChange = e => {
+    if (review) {
+      return
+    }
     setValue(e.target.value)
     onFillIn(e.target.value)
   }
@@ -57,6 +63,7 @@ export default ({ fillIn, onFillIn }) => {
         onChange={onChange}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
+        readOnly={review}
       />
     </FillInStyles>
   )

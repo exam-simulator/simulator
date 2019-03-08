@@ -24,7 +24,7 @@ export const MultipleStyles = styled.div`
   }
 `
 
-export default ({ question, answers, onMultipleChoice }) => {
+export default ({ review, question, answers, onMultipleChoice }) => {
   const [value, setValue] = useState(null)
 
   // sets value when component mounts only
@@ -38,6 +38,9 @@ export default ({ question, answers, onMultipleChoice }) => {
 
   // sets value when user clicks choice
   const onClick = i => {
+    if (review) {
+      return
+    }
     setValue(i)
     onMultipleChoice(i)
   }

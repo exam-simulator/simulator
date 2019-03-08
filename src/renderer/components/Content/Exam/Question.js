@@ -33,6 +33,9 @@ export default class Question extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.review) {
+      return
+    }
     this.timer = setInterval(() => {
       const { time } = this.state
       this.setState({ time: time + 1 })
@@ -40,6 +43,9 @@ export default class Question extends React.Component {
   }
 
   componentWillUnmount() {
+    if (this.props.review) {
+      return
+    }
     clearInterval(this.timer)
     let {
       props: { intervals, index },

@@ -1,22 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
 import Summary from './Summary'
-
-const ReviewExamStyles = styled.div``
-
-function ReviewExam() {
-  return <ReviewExamStyles>exam</ReviewExamStyles>
-}
+import ReviewExam from './ReviewExam'
 
 export default class Review extends React.Component {
+  state = {}
+
   render() {
     const {
-      props: { reviewMode, report }
+      props: { reviewMode, report, ...rest }
     } = this
     if (reviewMode === 0) {
       return <Summary report={report} />
     } else {
-      return <ReviewExam />
+      return <ReviewExam report={report} {...rest} />
     }
   }
 }

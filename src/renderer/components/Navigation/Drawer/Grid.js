@@ -31,9 +31,11 @@ export const GridStyles = styled.div`
     .correct {
       background: ${props => lighten(0.1, props.theme.primary)};
     }
-    .bookmarked,
-    .incorrect {
+    .bookmarked {
       background: ${props => lighten(0.25, props.theme.tertiary)};
+    }
+    .incorrect {
+      background: ${props => lighten(0.25, props.theme.secondary)};
     }
     .incomplete {
       background: ${props => props.theme.grey[2]};

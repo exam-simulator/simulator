@@ -75,13 +75,11 @@ export default class App extends React.Component {
   setOptions = async () => this.setState({ options: await readOptionsFile() })
 
   loadLocalExam = async () => {
-    const errors = await showFileDialog(mainWin)
-    if (!errors) {
-      if (typeof errors === 'boolean') {
-        this.setExams()
-      } else if (typeof errors === 'object') {
-        console.log(errors)
-      }
+    const result = await showFileDialog(mainWin)
+    if (result === true) {
+      this.setExams()
+    } else {
+      console.log(result) // array of error messages
     }
   }
 
@@ -299,7 +297,7 @@ export default class App extends React.Component {
 
   setReviewType = reviewType => this.setState({ reviewType })
 
-  setRevewQuestion = reviewQuestion => this.setState({ reviewQuestion })
+  setReviewQuestion = reviewQuestion => this.setState({ reviewQuestion })
 
   render() {
     const { loading, ...rest } = this.state
@@ -313,6 +311,7 @@ export default class App extends React.Component {
         setMainMode={this.setMainMode}
         setQuestion={this.setQuestion}
         initTimer={this.initTimer}
+        pauseTimer={this.pauseTimer}
         loadLocalExam={this.loadLocalExam}
         onShowExplanation={this.onShowExplanation}
         endExam={this.endExam}
@@ -320,7 +319,7 @@ export default class App extends React.Component {
         initReview={this.initReview}
         setReviewMode={this.setReviewMode}
         setReviewType={this.setReviewType}
-        setRevewQuestion={this.setReviewQuestion}
+        setReviewQuestion={this.setReviewQuestion}
         saveSession={this.saveSession}
       >
         <Content

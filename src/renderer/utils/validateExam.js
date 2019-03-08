@@ -1,5 +1,5 @@
 const Ajv = require('ajv')
-const ajv = new Ajv({ allErrors: true, useDefaults: 'empty' })
+const ajv = new Ajv({ allErrors: true })
 
 const schema = {
   definitions: {},
@@ -225,6 +225,9 @@ const schema = {
 const validate = ajv.compile(schema)
 
 export default data => {
-  const valid = validate(JSON.parse(data))
-  return valid ? 'valid' : validate.errors
+  return new Promise((resolve, reject) => {
+    const valid = validate(JSON.parse(data))
+    const payload = valid ? 'valid' : validate.errors
+    resolve(payload)
+  })
 }

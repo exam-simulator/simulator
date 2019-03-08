@@ -57,7 +57,7 @@ class ListOrder extends React.Component {
   }
 
   render() {
-    return <div className="list-order">{this.renderChoices()}</div>
+    return <div>{this.renderChoices()}</div>
   }
 }
 

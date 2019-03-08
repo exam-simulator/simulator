@@ -47,6 +47,7 @@ export default ({
           return (
             <Slide key={i} direction="right">
               <Question
+                review={false}
                 question={el.question}
                 index={i}
                 intervals={intervals}
@@ -54,18 +55,20 @@ export default ({
               />
               {variant === 0 ? (
                 <MultipleChoice
+                  review={false}
                   question={el}
                   answers={answers[i]}
                   onMultipleChoice={onMultipleChoice}
                 />
               ) : variant === 1 ? (
                 <MultipleAnswer
+                  review={false}
                   question={el}
                   answers={answers[i]}
                   onMultipleAnswer={onMultipleAnswer}
                 />
               ) : variant === 2 ? (
-                <FillIn fillIn={fillIns[question]} onFillIn={onFillIn} />
+                <FillIn review={false} fillIn={fillIns[question]} onFillIn={onFillIn} />
               ) : variant === 3 ? (
                 <ListOrder
                   index={i}

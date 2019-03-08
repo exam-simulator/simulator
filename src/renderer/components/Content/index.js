@@ -57,7 +57,15 @@ export default class Content extends React.Component {
         />
       )
     } else if (p.mode === 3) {
-      return <Review reviewMode={p.reviewMode} report={p.report} />
+      return (
+        <Review
+          exam={p.exam}
+          reviewMode={p.reviewMode}
+          reviewType={p.reviewType}
+          reviewQuestion={p.reviewQuestion}
+          report={p.report}
+        />
+      )
     } else {
       return null
     }

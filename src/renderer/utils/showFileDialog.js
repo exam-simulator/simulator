@@ -34,7 +34,7 @@ export default win => {
           // read contents of new exam file
           const data = await readFile(filepaths[0])
           // validate JSON against predefined schema
-          const valid = validateExam(data)
+          const valid = await validateExam(data)
           // exam is valid so write it to application data
           if (valid === 'valid') {
             await writeFile(dstFilepath, data)

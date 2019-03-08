@@ -3,7 +3,7 @@ import { CheckBox } from 'styled-icons/material/CheckBox'
 import { CheckBoxOutlineBlank } from 'styled-icons/material/CheckBoxOutlineBlank'
 import { MultipleStyles } from './MultipleChoice'
 
-export default ({ question, answers, onMultipleAnswer }) => {
+export default ({ review, question, answers, onMultipleAnswer }) => {
   const [values, setValues] = useState([])
 
   useEffect(() => {
@@ -17,6 +17,9 @@ export default ({ question, answers, onMultipleAnswer }) => {
   }, [])
 
   const onClick = i => {
+    if (review) {
+      return
+    }
     let newValues
     if (values.includes(i)) {
       newValues = values.filter(el => el !== i)
