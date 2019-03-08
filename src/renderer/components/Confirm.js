@@ -84,9 +84,11 @@ const Confirm = ({ show, title, message, buttons, onConfirm, onClose }) => (
         <div className="action confirm" onClick={onConfirm}>
           {buttons[0]}
         </div>
-        <div className="action cancel" onClick={onClose}>
-          {buttons[1]}
-        </div>
+        {buttons.length === 2 ? (
+          <div className="action cancel" onClick={onClose}>
+            {buttons[1]}
+          </div>
+        ) : null}
       </div>
     </ConfirmStyles>
   </Modal>

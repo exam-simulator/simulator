@@ -11,7 +11,8 @@ export default class Navigation extends React.Component {
     confirmBeginExam: false,
     confirmEndExam: false,
     confirmReviewExam: false,
-    confirmSaveSession: false
+    confirmSaveSession: false,
+    confirmPauseTimer: false
   }
 
   toggleOpen = () => this.setState(({ open }) => ({ open: !open }))
@@ -45,10 +46,27 @@ export default class Navigation extends React.Component {
     this.props.saveSession()
   }
 
+  pauseExam = () => {
+    this.setState({ confirmPauseTimer: true })
+    this.props.pauseTimer()
+  }
+
+  unPauseExam = () => {
+    this.setState({ confirmPauseTimer: false })
+    this.props.initTimer()
+  }
+
   render() {
     const {
       props: { children, onShowExplanation, ...rest },
-      state: { open, confirmBeginExam, confirmEndExam, confirmReviewExam, confirmSaveSession }
+      state: {
+        open,
+        confirmBeginExam,
+        confirmEndExam,
+        confirmReviewExam,
+        confirmSaveSession,
+        confirmPauseTimer
+      }
     } = this
     return (
       <>
@@ -61,6 +79,7 @@ export default class Navigation extends React.Component {
           setConfirmBeginExam={() => this.setConfirmBeginExam(true)}
           setConfirmEndExam={() => this.setConfirmEndExam(true)}
           setConfirmSaveSession={() => this.setConfirmSaveSession(true)}
+          pauseExam={this.pauseExam}
         />
         <Main open={open}>
           {React.Children.map(children, child =>
@@ -102,6 +121,14 @@ export default class Navigation extends React.Component {
           buttons={['Save Session', 'Cancel']}
           onConfirm={this.saveSession}
           onClose={() => this.setConfirmSaveSession(false)}
+        />
+        <Confirm
+          show={confirmPauseTimer}
+          title="Exam Paused"
+          message="Exam paused. Click to resume."
+          buttons={['Resume Exam']}
+          onConfirm={this.unPauseExam}
+          onClose={() => {}}
         />
       </>
     )

@@ -103,6 +103,7 @@ export default ({
   setMode,
   setMainMode,
   setQuestion,
+  pauseExam,
   loadLocalExam,
   onShowExplanation,
   setExamMode,
@@ -174,7 +175,7 @@ export default ({
       icon: <Save size={20} />,
       onClick: setConfirmSaveSession
     },
-    { type: 'menu', text: 'Pause Exam', icon: <Pause size={20} /> },
+    { type: 'menu', text: 'Pause Exam', icon: <Pause size={20} />, onClick: pauseExam },
     { type: 'menu', text: 'End Exam', icon: <Stop size={20} />, onClick: setConfirmEndExam }
   ]
 
