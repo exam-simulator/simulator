@@ -36,6 +36,7 @@ export default class Content extends React.Component {
             history={p.history}
             setIndexHistory={p.setIndexHistory}
             setConfirmReviewExam={p.setConfirmReviewExam}
+            setConfirmDeleteHistory={p.setConfirmDeleteHistory}
           />
         )
       } else if (p.mainMode === 2) {

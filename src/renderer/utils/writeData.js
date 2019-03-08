@@ -4,10 +4,10 @@ import { HISTORY_PATH, SESSIONS_PATH } from './filepaths'
 
 const writeFile = promisify(fs.writeFile)
 
-export default (type, data) => {
+export default async (type, data) => {
   if (type === 'history') {
-    writeFile(HISTORY_PATH, JSON.stringify(data)).catch(console.error)
+    await writeFile(HISTORY_PATH, JSON.stringify(data)).catch(console.error)
   } else if (type === 'session') {
-    writeFile(SESSIONS_PATH, JSON.stringify(data)).catch(console.error)
+    await writeFile(SESSIONS_PATH, JSON.stringify(data)).catch(console.error)
   }
 }

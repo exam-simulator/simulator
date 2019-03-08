@@ -13,7 +13,8 @@ export default class Navigation extends React.Component {
     confirmReviewExam: false,
     confirmSaveSession: false,
     confirmPauseTimer: false,
-    confirmDeleteExam: false
+    confirmDeleteExam: false,
+    confirmDeleteHistory: false
   }
 
   toggleOpen = () => this.setState(({ open }) => ({ open: !open }))
@@ -27,6 +28,8 @@ export default class Navigation extends React.Component {
   setConfirmSaveSession = confirmSaveSession => this.setState({ confirmSaveSession })
 
   setConfirmDeleteExam = confirmDeleteExam => this.setState({ confirmDeleteExam })
+
+  setConfirmDeleteHistory = confirmDeleteHistory => this.setState({ confirmDeleteHistory })
 
   startExam = () => {
     this.setConfirmBeginExam(false)
@@ -64,6 +67,11 @@ export default class Navigation extends React.Component {
     this.props.deleteExam()
   }
 
+  deleteHistory = () => {
+    this.setState({ confirmDeleteHistory: false })
+    this.props.deleteHistory()
+  }
+
   render() {
     const {
       props: { children, onShowExplanation, ...rest },
@@ -74,7 +82,8 @@ export default class Navigation extends React.Component {
         confirmReviewExam,
         confirmSaveSession,
         confirmPauseTimer,
-        confirmDeleteExam
+        confirmDeleteExam,
+        confirmDeleteHistory
       }
     } = this
     return (
@@ -95,7 +104,8 @@ export default class Navigation extends React.Component {
             React.cloneElement(child, {
               open,
               setConfirmReviewExam: () => this.setConfirmReviewExam(true),
-              setConfirmDeleteExam: () => this.setConfirmDeleteExam(true)
+              setConfirmDeleteExam: () => this.setConfirmDeleteExam(true),
+              setConfirmDeleteHistory: () => this.setConfirmDeleteHistory(true)
             })
           )}
         </Main>
@@ -147,6 +157,14 @@ export default class Navigation extends React.Component {
           buttons={['Delete Exam', 'Cancel']}
           onConfirm={this.deleteExam}
           onClose={() => this.setConfirmDeleteExam(false)}
+        />
+        <Confirm
+          show={confirmDeleteHistory}
+          title="Delete History"
+          message={`Do you want to delete this exam history report ?`}
+          buttons={['Delete History', 'Cancel']}
+          onConfirm={this.deleteHistory}
+          onClose={() => this.setConfirmDeleteHistory(false)}
         />
       </>
     )

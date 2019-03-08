@@ -10,7 +10,7 @@ const HistoryStyles = styled.div`
   overflow-y: auto;
 `
 
-export default ({ history, setIndexHistory, setConfirmReviewExam }) => {
+export default ({ history, setIndexHistory, setConfirmReviewExam, setConfirmDeleteHistory }) => {
   const onOpenConfirmReview = i => {
     setIndexHistory(i)
     setConfirmReviewExam()
@@ -18,6 +18,8 @@ export default ({ history, setIndexHistory, setConfirmReviewExam }) => {
 
   const onDeleteClick = (e, i) => {
     e.stopPropagation()
+    setIndexHistory(i)
+    setConfirmDeleteHistory()
   }
 
   if (history.length) {

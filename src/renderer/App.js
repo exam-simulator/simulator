@@ -95,6 +95,13 @@ export default class App extends React.Component {
     this.setState({ indexExam: null })
   }
 
+  deleteHistory = async () => {
+    const { history, indexHistory } = this.state
+    const newHistory = history.filter((el, i) => i !== indexHistory)
+    await writeData('history', newHistory)
+    this.setState({ history: newHistory, indexHistory: null })
+  }
+
   setMode = mode => this.setState({ mode })
 
   setMainMode = mainMode => this.setState({ mainMode })
@@ -365,6 +372,7 @@ export default class App extends React.Component {
         setReviewQuestion={this.setReviewQuestion}
         saveSession={this.saveSession}
         deleteExam={this.deleteExam}
+        deleteHistory={this.deleteHistory}
       >
         <Content
           {...rest}
