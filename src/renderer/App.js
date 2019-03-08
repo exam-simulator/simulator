@@ -13,10 +13,10 @@ import showFileDialog from './utils/showFileDialog'
 import analyzeAnswers from './utils/analyzeAnswers'
 import examDataStuctures from './utils/examDataStuctures'
 import createSession from './utils/createSession'
+import questionHelper from './utils/questionHelper'
 import { DATA_DIR_PATH } from './utils/filepaths'
 import Navigation from './components/Navigation'
 import Content from './components/Content'
-import bookmarkQuestion from './utils/bookmarkQuestion'
 
 const mainWin = remote.BrowserWindow.fromId(1)
 
@@ -135,7 +135,7 @@ export default class App extends React.Component {
       // bookmark mode
     } else {
       if (marked.length === 1) return
-      const newQuestion = bookmarkQuestion(source, marked, question)
+      const newQuestion = questionHelper(source, marked, question)
       if (!newQuestion) {
         return
       }
@@ -319,11 +319,29 @@ export default class App extends React.Component {
    * @param reviewMode {number} - the new mode
    */
   setReviewMode = reviewMode => this.setState({ reviewMode })
+
   /**
-   * Set type of review - 0 = all | 1 = incorrect | 2 = incomplete
+   * Set type of review and first question of that type - 0 = all | 1 = incorrect | 2 = incomplete
    * @param reviewType {number} - the new type
    */
-  setReviewType = reviewType => this.setState({ reviewType })
+  setReviewType = reviewType => {
+    const {
+      report: { incomplete, incorrect }
+    } = this.state
+    if (reviewType === 0) {
+      this.setState({ reviewType, reviewQuestion: 0 })
+    } else if (reviewType === 1) {
+      if (!incorrect.length) {
+        return
+      }
+      this.setState({ reviewType, reviewQuestion: incorrect[0] })
+    } else if (reviewType === 2) {
+      if (!incomplete.length) {
+        return
+      }
+      this.setState({ reviewType, reviewQuestion: incomplete[0] })
+    }
+  }
 
   /**
    * Sets the question index
@@ -332,20 +350,32 @@ export default class App extends React.Component {
    */
   setReviewQuestion = (reviewQuestion, source) => {
     const {
-      exam: { test },
+      report: { incorrect, incomplete, testLength },
       reviewType
     } = this.state
     // direct question click
     if (source === 'grid') {
       return this.setState({ reviewQuestion })
     }
-    if (reviewQuestion < 0 || reviewQuestion > test.length - 1) {
+    if (reviewQuestion < 0 || reviewQuestion > testLength - 1) {
       return
     }
     // buttons and sliders
     // all questions mode
     if (reviewType === 0) {
       this.setState({ reviewQuestion })
+    } else if (reviewType === 1) {
+      let newQuestion = questionHelper(source, incorrect, reviewQuestion)
+      if (!newQuestion) {
+        return
+      }
+      this.setState({ reviewQuestion: newQuestion })
+    } else if (reviewType === 2) {
+      let newQuestion = questionHelper(source, incomplete, reviewQuestion)
+      if (!newQuestion) {
+        return
+      }
+      this.setState({ reviewQuestion: newQuestion })
     }
   }
 

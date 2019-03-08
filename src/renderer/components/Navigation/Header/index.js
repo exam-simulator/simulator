@@ -26,7 +26,7 @@ const MainHeaderStyles = styled.div`
 `
 
 function MainHeader({ mainMode }) {
-  const title = mainMode === 0 ? 'Exam Files' : mainMode === 1 ? 'History' : 'Saved Sessions'
+  const title = mainMode === 0 ? 'Exams' : mainMode === 1 ? 'History' : 'Sessions'
   return (
     <MainHeaderStyles>
       <div className="title">{title}</div>
