@@ -7,7 +7,7 @@ import Bar from './Bar'
 import { BLUE_LOGO_PATH } from '../../../utils/filepaths'
 
 const HistoryGroupStyles = styled.div`
-  width: 100%;
+  width: calc(100% - 10px);
   overflow: hidden;
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
@@ -44,7 +44,7 @@ const HistoryGroupStyles = styled.div`
 `
 
 export default ({ reports, averageScore, averageTime, onOpenConfirmReview, onDeleteClick }) => {
-  const [expand, setExpand] = useState(true)
+  const [expand, setExpand] = useState(false)
   return (
     <HistoryGroupStyles expand={expand}>
       <div className="group-data" onClick={() => setExpand(!expand)}>

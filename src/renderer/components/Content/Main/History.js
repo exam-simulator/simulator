@@ -5,6 +5,9 @@ import HistoryGroup from './HistoryGroup'
 
 const HistoryStyles = styled.div`
   width: 100%;
+  height: calc(100vh - 13rem);
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 
 export default ({ history, setIndexHistory, setConfirmReviewExam }) => {
@@ -23,7 +26,7 @@ export default ({ history, setIndexHistory, setConfirmReviewExam }) => {
     )
     return (
       <HistoryStyles>
-        {uniqueFilenames.map((uf, i) => {
+        {uniqueFilenames.sort().map((uf, i) => {
           const reports = groupedByFilename[uf]
           const averageTime = Math.round(averageTimes[i] / reports[0].time)
           return (
