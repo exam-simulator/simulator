@@ -10,6 +10,7 @@ export default class Navigation extends React.Component {
     open: true,
     confirmBeginExam: false,
     confirmEndExam: false,
+    confirmTimeExpired: false,
     confirmReviewExam: false,
     confirmSaveSession: false,
     confirmPauseTimer: false,
@@ -17,11 +18,19 @@ export default class Navigation extends React.Component {
     confirmDeleteHistory: false
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.time === 1 && this.props.time === 0) {
+      this.setConfirmTimeExpired(true)
+    }
+  }
+
   toggleOpen = () => this.setState(({ open }) => ({ open: !open }))
 
   setConfirmBeginExam = confirmBeginExam => this.setState({ confirmBeginExam })
 
   setConfirmEndExam = confirmEndExam => this.setState({ confirmEndExam })
+
+  setConfirmTimeExpired = confirmTimeExpired => this.setState({ confirmTimeExpired })
 
   setConfirmReviewExam = confirmReviewExam => this.setState({ confirmReviewExam })
 
@@ -39,6 +48,11 @@ export default class Navigation extends React.Component {
 
   endExam = () => {
     this.setConfirmEndExam(false)
+    this.props.endExam()
+  }
+
+  endExamExpired = () => {
+    this.setConfirmTimeExpired(false)
     this.props.endExam()
   }
 
@@ -79,6 +93,7 @@ export default class Navigation extends React.Component {
         open,
         confirmBeginExam,
         confirmEndExam,
+        confirmTimeExpired,
         confirmReviewExam,
         confirmSaveSession,
         confirmPauseTimer,
@@ -125,6 +140,13 @@ export default class Navigation extends React.Component {
           buttons={['End Exam', 'Cancel']}
           onConfirm={this.endExam}
           onClose={() => this.setConfirmEndExam(false)}
+        />
+        <Confirm
+          show={confirmTimeExpired}
+          title="Time Expired"
+          message="Time has expired. Your exam has ended."
+          buttons={['Continue']}
+          onConfirm={this.endExamExpired}
         />
         <Confirm
           show={confirmReviewExam}

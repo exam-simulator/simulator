@@ -49,6 +49,7 @@ export default class Content extends React.Component {
         <Exam
           explanationRef={p.explanationRef}
           explanation={p.explanation}
+          examMode={p.examMode}
           exam={p.exam}
           question={p.question}
           answers={p.answers}

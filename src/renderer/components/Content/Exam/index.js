@@ -20,6 +20,7 @@ export default ({
   explanationRef,
   explanation,
   exam,
+  examMode,
   question,
   answers,
   fillIns,
@@ -38,6 +39,7 @@ export default ({
       <TopDisplay
         question={question}
         length={exam.test.length}
+        examMode={examMode}
         marked={marked}
         onBookmarkQuestion={onBookmarkQuestion}
       />

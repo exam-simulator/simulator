@@ -52,6 +52,8 @@ export default {
   secondary: '#DE4545',
   tertiary: '#2484EB',
   quatro: '#7AFF6B',
-  borderRadius: '3px',
-  shadows
+  borderRadius: '2px',
+  shadows,
+  scrollbar: '8px',
+  fontSize: '10px'
 }
