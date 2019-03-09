@@ -1,3 +1,2 @@
-# Exam Simulator
+# Initial page
 
-A JSON based exam simulator built with Electron
