@@ -31,6 +31,7 @@ export default class App extends React.Component {
     options: null,
     indexExam: null,
     indexHistory: null,
+    indexSession: null,
     examMode: 0,
     exam: null,
     answers: [],
@@ -109,6 +110,8 @@ export default class App extends React.Component {
   setIndexExam = indexExam => this.setState({ indexExam })
 
   setIndexHistory = indexHistory => this.setState({ indexHistory })
+
+  setIndexSession = indexSession => this.setState({ indexSession })
 
   /**
    * Sets the question index
@@ -410,6 +413,7 @@ export default class App extends React.Component {
           setMode={this.setMode}
           setIndexExam={this.setIndexExam}
           setIndexHistory={this.setIndexHistory}
+          setIndexSession={this.setIndexSession}
           initExam={this.initExam}
           onBookmarkQuestion={this.onBookmarkQuestion}
           onMultipleChoice={this.onMultipleChoice}

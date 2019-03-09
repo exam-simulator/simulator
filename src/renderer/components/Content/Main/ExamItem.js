@@ -21,12 +21,13 @@ const ExamItemStyles = styled.div`
   }
   .main {
     display: grid;
-    grid-template-columns: 8rem 1fr 10rem 14rem 6rem 6rem;
+    grid-template-columns: 6rem 1fr 10rem 14rem 6rem 6rem;
     justify-items: center;
     align-items: center;
     .image {
       justify-self: center;
-      width: 4rem;
+      width: 3rem;
+      height: 3rem;
       cursor: pointer;
     }
     .title {

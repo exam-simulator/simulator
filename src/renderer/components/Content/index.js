@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Exams from './Main/Exams'
 import History from './Main/History'
+import Sessions from './Main/Sessions'
 import Cover from './Cover'
 import Exam from './Exam'
 import Review from './Review'
@@ -14,8 +15,6 @@ const ContentStyles = styled.div`
   padding-right: ${props => (props.open ? '28rem' : '7rem')};
   transition: 0.3s;
 `
-
-const Sessions = styled.div``
 
 export default class Content extends React.Component {
   renderContent = () => {
@@ -40,7 +39,7 @@ export default class Content extends React.Component {
           />
         )
       } else if (p.mainMode === 2) {
-        return <Sessions>{JSON.stringify(p.sessions)}</Sessions>
+        return <Sessions sessions={p.sessions} setIndexSession={p.setIndexSession} />
       }
     } else if (p.mode === 1) {
       return <Cover cover={p.exam.cover} />

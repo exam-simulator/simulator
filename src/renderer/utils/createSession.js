@@ -1,5 +1,5 @@
 export default ({
-  exam: { title, code, filename, image },
+  exam: { title, code, filename, image, test },
   answers,
   question,
   time,
@@ -20,6 +20,7 @@ export default ({
     image,
     title,
     code,
+    testLength: test.length,
     completed,
     answers,
     fillIns,
