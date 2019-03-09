@@ -14,7 +14,10 @@
   "cover": [
     { "variant": 2, "text": "Demo Exam" },
     { "variant": 1, "text": "Making a Murderer Edition" },
-    { "variant": 0, "text": "https://s3.amazonaws.com/electron-exam/general/brain.png" },
+    {
+      "variant": 0,
+      "text": "https://s3.amazonaws.com/electron-exam/general/demo/demo-exam-cover.png"
+    },
     { "variant": 1, "text": "Get a serious brain workout with Exam Simulator" },
     { "variant": 1, "text": "Build your own exam with Exam Maker" },
     { "variant": 1, "text": "Embrace free and open source software" }

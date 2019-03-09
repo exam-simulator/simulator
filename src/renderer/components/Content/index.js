@@ -6,6 +6,7 @@ import Sessions from './Main/Sessions'
 import Cover from './Cover'
 import Exam from './Exam'
 import Review from './Review'
+import Options from './Options'
 
 const ContentStyles = styled.div`
   display: grid;
@@ -46,6 +47,8 @@ export default class Content extends React.Component {
             setConfirmDeleteSession={p.setConfirmDeleteSession}
           />
         )
+      } else if (p.mainMode === 3) {
+        return <Options options={p.options} />
       }
     } else if (p.mode === 1) {
       return <Cover cover={p.exam.cover} />

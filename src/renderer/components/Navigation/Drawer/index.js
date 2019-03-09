@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { shell } from 'electron'
 import { lighten } from 'polished'
 import { Menu } from 'styled-icons/material/Menu'
 import { ChevronLeft } from 'styled-icons/material/ChevronLeft'
@@ -88,6 +89,12 @@ const MenuItem = styled.div`
   }
 `
 
+const Spacer0 = styled.div`
+  height: calc(100vh - 55rem);
+  border-top: 1px solid ${props => props.theme.grey[2]};
+  border-bottom: 1px solid ${props => props.theme.grey[2]};
+`
+
 export default ({
   open,
   mode,
@@ -127,11 +134,30 @@ export default ({
     { type: 'menu', text: 'Exams', icon: <Folder size={20} />, onClick: () => setMainMode(0) },
     { type: 'menu', text: 'History', icon: <History size={20} />, onClick: () => setMainMode(1) },
     { type: 'menu', text: 'Sessions', icon: <Save size={20} />, onClick: () => setMainMode(2) },
-    { type: 'menu', text: 'Exam Maker', icon: <ExitToApp size={20} /> },
+    { type: 'spacer0' },
+    {
+      type: 'menu',
+      text: 'Exam Maker',
+      icon: <ExitToApp size={20} />,
+      onClick: () => shell.openExternal('https://exam-maker.herokuapp.com/')
+    },
     { type: 'menu', text: 'Documentation', icon: <Help size={20} /> },
     { type: 'menu', text: 'About', icon: <Info size={20} /> },
-    { type: 'menu', text: 'Report a Bug', icon: <BugReport size={20} /> },
-    { type: 'menu', text: 'Settings', icon: <Settings size={20} /> }
+    {
+      type: 'menu',
+      text: 'Report a Bug',
+      icon: <BugReport size={20} />,
+      onClick: () =>
+        shell.openExternal(
+          'https://github.com/exam-simulator/simulator/issues/new?assignees=&labels=&template=bug_report.md&title='
+        )
+    },
+    {
+      type: 'menu',
+      text: 'Settings',
+      icon: <Settings size={20} />,
+      onClick: () => setMainMode(3)
+    }
   ]
 
   // Cover Menu show when mode === 1
@@ -277,6 +303,8 @@ export default ({
                 setReviewQuestion={setReviewQuestion}
               />
             )
+          } else if (el.type === 'spacer0') {
+            return <Spacer0 key={i} />
           }
         })}
       </MainMenu>

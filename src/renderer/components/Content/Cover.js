@@ -32,7 +32,12 @@ export default ({ cover }) => (
   <CoverStyles>
     {cover.map((el, i) => {
       if (el.variant === 0) {
-        return <Image key={i} src={el.text} />
+        return (
+          <React.Fragment key={i}>
+            <Image src={el.text} />
+            <br />
+          </React.Fragment>
+        )
       } else if (el.variant === 1) {
         return <NormalText key={i}>{el.text}</NormalText>
       } else if (el.variant === 2) {
