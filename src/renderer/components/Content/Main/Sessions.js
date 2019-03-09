@@ -10,7 +10,7 @@ const SessionStyles = styled.div`
   overflow-y: auto;
 `
 
-export default ({ sessions, setIndexSession, setConfirmDeleteSession }) => {
+export default ({ sessions, setIndexSession, setConfirmStartSession, setConfirmDeleteSession }) => {
   if (sessions.length) {
     return (
       <SessionStyles>
@@ -19,6 +19,7 @@ export default ({ sessions, setIndexSession, setConfirmDeleteSession }) => {
             key={i}
             session={el}
             setIndexSession={() => setIndexSession(i)}
+            setConfirmStartSession={setConfirmStartSession}
             setConfirmDeleteSession={setConfirmDeleteSession}
           />
         ))}

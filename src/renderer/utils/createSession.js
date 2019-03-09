@@ -5,7 +5,8 @@ export default ({
   time,
   fillIns,
   orders,
-  marked
+  marked,
+  intervals
 }) => {
   const date = new Date()
   const completed = answers.reduce((acc, val, i) => {
@@ -26,6 +27,7 @@ export default ({
     fillIns,
     orders,
     marked,
+    intervals,
     question,
     time,
     date

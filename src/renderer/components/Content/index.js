@@ -44,6 +44,7 @@ export default class Content extends React.Component {
           <Sessions
             sessions={p.sessions}
             setIndexSession={p.setIndexSession}
+            setConfirmStartSession={p.setConfirmStartSession}
             setConfirmDeleteSession={p.setConfirmDeleteSession}
           />
         )

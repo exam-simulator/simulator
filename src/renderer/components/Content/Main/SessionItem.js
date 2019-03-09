@@ -51,14 +51,19 @@ const SessionItemStyles = styled.div`
   }
 `
 
-export default ({ session, setIndexSession, setConfirmDeleteSession }) => {
+export default ({ session, setIndexSession, setConfirmStartSession, setConfirmDeleteSession }) => {
+  const onSessionClick = () => {
+    setIndexSession()
+    setConfirmStartSession()
+  }
+
   const onDeleteClick = e => {
     e.stopPropagation()
     setIndexSession()
     setConfirmDeleteSession()
   }
   return (
-    <SessionItemStyles>
+    <SessionItemStyles onClick={onSessionClick}>
       <div className="main">
         <img className="image" src={session.image || BLUE_LOGO_PATH} />
         <div className="title">{session.title}</div>

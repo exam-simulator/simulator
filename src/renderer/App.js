@@ -387,6 +387,29 @@ export default class App extends React.Component {
     })
   }
 
+  initSession = () => {
+    const { sessions, indexSession, exams } = this.state
+    const session = sessions[indexSession]
+    const exam = exams.find(el => el.filename === session.filename)
+
+    this.setState(
+      {
+        mode: 2,
+        mainMode: 0,
+        exam,
+        time: session.time,
+        question: session.question,
+        answers: session.answers,
+        marked: session.marked,
+        fillIns: session.fillIns,
+        orders: session.orders
+      },
+      () => {
+        this.initTimer()
+      }
+    )
+  }
+
   /**
    * Initialize review mode and fetch report
    */
@@ -491,6 +514,7 @@ export default class App extends React.Component {
         setReviewType={this.setReviewType}
         setReviewQuestion={this.setReviewQuestion}
         saveSession={this.saveSession}
+        initSession={this.initSession}
         deleteExam={this.deleteExam}
         deleteHistory={this.deleteHistory}
         deleteSession={this.deleteSession}

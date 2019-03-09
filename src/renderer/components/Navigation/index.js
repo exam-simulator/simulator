@@ -13,6 +13,7 @@ export default class Navigation extends React.Component {
     confirmTimeExpired: false,
     confirmReviewExam: false,
     confirmSaveSession: false,
+    confirmStartSession: false,
     confirmPauseTimer: false,
     confirmDeleteExam: false,
     confirmDeleteHistory: false,
@@ -36,6 +37,8 @@ export default class Navigation extends React.Component {
   setConfirmReviewExam = confirmReviewExam => this.setState({ confirmReviewExam })
 
   setConfirmSaveSession = confirmSaveSession => this.setState({ confirmSaveSession })
+
+  setConfirmStartSession = confirmStartSession => this.setState({ confirmStartSession })
 
   setConfirmDeleteExam = confirmDeleteExam => this.setState({ confirmDeleteExam })
 
@@ -67,6 +70,11 @@ export default class Navigation extends React.Component {
   saveSession = () => {
     this.setConfirmSaveSession(false)
     this.props.saveSession()
+  }
+
+  startSession = () => {
+    this.setConfirmStartSession(false)
+    this.props.initSession()
   }
 
   pauseExam = () => {
@@ -104,6 +112,7 @@ export default class Navigation extends React.Component {
         confirmTimeExpired,
         confirmReviewExam,
         confirmSaveSession,
+        confirmStartSession,
         confirmPauseTimer,
         confirmDeleteExam,
         confirmDeleteHistory,
@@ -130,6 +139,7 @@ export default class Navigation extends React.Component {
               setConfirmReviewExam: () => this.setConfirmReviewExam(true),
               setConfirmDeleteExam: () => this.setConfirmDeleteExam(true),
               setConfirmDeleteHistory: () => this.setConfirmDeleteHistory(true),
+              setConfirmStartSession: () => this.setConfirmStartSession(true),
               setConfirmDeleteSession: () => this.setConfirmDeleteSession(true)
             })
           )}
@@ -173,6 +183,14 @@ export default class Navigation extends React.Component {
           buttons={['Save Session', 'Cancel']}
           onConfirm={this.saveSession}
           onClose={() => this.setConfirmSaveSession(false)}
+        />
+        <Confirm
+          show={confirmStartSession}
+          title="Resume Session"
+          message="Do you want to resume current session ?"
+          buttons={['Resume Session', 'Cancel']}
+          onConfirm={this.startSession}
+          onClose={() => this.setConfirmStartSession(false)}
         />
         <Confirm
           show={confirmPauseTimer}
