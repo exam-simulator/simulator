@@ -39,7 +39,13 @@ export default class Content extends React.Component {
           />
         )
       } else if (p.mainMode === 2) {
-        return <Sessions sessions={p.sessions} setIndexSession={p.setIndexSession} />
+        return (
+          <Sessions
+            sessions={p.sessions}
+            setIndexSession={p.setIndexSession}
+            setConfirmDeleteSession={p.setConfirmDeleteSession}
+          />
+        )
       }
     } else if (p.mode === 1) {
       return <Cover cover={p.exam.cover} />

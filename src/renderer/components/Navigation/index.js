@@ -15,7 +15,8 @@ export default class Navigation extends React.Component {
     confirmSaveSession: false,
     confirmPauseTimer: false,
     confirmDeleteExam: false,
-    confirmDeleteHistory: false
+    confirmDeleteHistory: false,
+    confirmDeleteSession: false
   }
 
   componentDidUpdate(prevProps) {
@@ -39,6 +40,8 @@ export default class Navigation extends React.Component {
   setConfirmDeleteExam = confirmDeleteExam => this.setState({ confirmDeleteExam })
 
   setConfirmDeleteHistory = confirmDeleteHistory => this.setState({ confirmDeleteHistory })
+
+  setConfirmDeleteSession = confirmDeleteSession => this.setState({ confirmDeleteSession })
 
   startExam = () => {
     this.setConfirmBeginExam(false)
@@ -86,6 +89,11 @@ export default class Navigation extends React.Component {
     this.props.deleteHistory()
   }
 
+  deleteSession = () => {
+    this.setState({ confirmDeleteSession: false })
+    this.props.deleteSession()
+  }
+
   render() {
     const {
       props: { children, onShowExplanation, ...rest },
@@ -98,7 +106,8 @@ export default class Navigation extends React.Component {
         confirmSaveSession,
         confirmPauseTimer,
         confirmDeleteExam,
-        confirmDeleteHistory
+        confirmDeleteHistory,
+        confirmDeleteSession
       }
     } = this
     return (
@@ -120,7 +129,8 @@ export default class Navigation extends React.Component {
               open,
               setConfirmReviewExam: () => this.setConfirmReviewExam(true),
               setConfirmDeleteExam: () => this.setConfirmDeleteExam(true),
-              setConfirmDeleteHistory: () => this.setConfirmDeleteHistory(true)
+              setConfirmDeleteHistory: () => this.setConfirmDeleteHistory(true),
+              setConfirmDeleteSession: () => this.setConfirmDeleteSession(true)
             })
           )}
         </Main>
@@ -187,6 +197,14 @@ export default class Navigation extends React.Component {
           buttons={['Delete History', 'Cancel']}
           onConfirm={this.deleteHistory}
           onClose={() => this.setConfirmDeleteHistory(false)}
+        />
+        <Confirm
+          show={confirmDeleteSession}
+          title="Delete Session"
+          message={`Do you want to delete this exam session ?`}
+          buttons={['Delete Session', 'Cancel']}
+          onConfirm={this.deleteSession}
+          onClose={() => this.setConfirmDeleteSession(false)}
         />
       </>
     )

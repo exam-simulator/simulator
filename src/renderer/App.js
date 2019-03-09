@@ -53,6 +53,9 @@ export default class App extends React.Component {
     this.createOrLoadApplicationData()
   }
 
+  /**
+   * Create or load all application data
+   */
   createOrLoadApplicationData = async () => {
     if (fs.existsSync(DATA_DIR_PATH)) {
       this.setExams()
@@ -68,14 +71,29 @@ export default class App extends React.Component {
     }
   }
 
+  /**
+   * Read exam directory and set exam files to state
+   */
   setExams = async () => this.setState({ loading: false, exams: await readExamsDir() })
 
+  /**
+   * Read history file and set history to state
+   */
   setHistory = async () => this.setState({ history: await readHistoryFile() })
 
+  /**
+   * Read sessions file and set sessions to state
+   */
   setSessions = async () => this.setState({ sessions: await readSessionsFile() })
 
+  /**
+   * Read options file and set options to state
+   */
   setOptions = async () => this.setState({ options: await readOptionsFile() })
 
+  /**
+   * Show file dialog to select a local JSON exam file, validates (returns errors if invalid) and sets new exam state
+   */
   loadLocalExam = async () => {
     const result = await showFileDialog(mainWin)
     if (result === true) {
@@ -85,6 +103,9 @@ export default class App extends React.Component {
     }
   }
 
+  /**
+   * Delete a single exam file, prevents demo exam from deletion
+   */
   deleteExam = async () => {
     const { exams, indexExam, sessions, history } = this.state
     const success = await deleteExam(exams, indexExam, sessions, history)
@@ -96,6 +117,9 @@ export default class App extends React.Component {
     this.setState({ indexExam: null })
   }
 
+  /**
+   * Delete a single history item
+   */
   deleteHistory = async () => {
     const { history, indexHistory } = this.state
     const newHistory = history.filter((el, i) => i !== indexHistory)
@@ -103,14 +127,44 @@ export default class App extends React.Component {
     this.setState({ history: newHistory, indexHistory: null })
   }
 
+  /**
+   * Delete a single session item
+   */
+  deleteSession = async () => {
+    const { sessions, indexSession } = this.state
+    const newSessions = sessions.filter((el, i) => i !== indexSession)
+    await writeData('session', newSessions)
+    this.setState({ sessions: newSessions, indexSession: null })
+  }
+
+  /**
+   * Set mode of application
+   * @param mode {number} - new mode - 0 = main | 1 = cover | 2 = exam | 3 = review
+   */
   setMode = mode => this.setState({ mode })
 
+  /**
+   * Set mode of main screen
+   * @param mainMode {number} - new main mode - 0 = exams | 1 = history | 2 = sessions | 3 = options
+   */
   setMainMode = mainMode => this.setState({ mainMode })
 
+  /**
+   * Set index of selected exam file
+   * @param indexExam {number} - the new index
+   */
   setIndexExam = indexExam => this.setState({ indexExam })
 
+  /**
+   * Set index of selected history file
+   * @param indexHistory {number} - the new index
+   */
   setIndexHistory = indexHistory => this.setState({ indexHistory })
 
+  /**
+   * Set index of selected session file
+   * @param indexSession {number} - the new index
+   */
   setIndexSession = indexSession => this.setState({ indexSession })
 
   /**
@@ -185,6 +239,9 @@ export default class App extends React.Component {
     })
   }
 
+  /**
+   * Start the exam timer countdown
+   */
   initTimer = () => {
     this.timer = setInterval(() => {
       const { time } = this.state
@@ -196,12 +253,22 @@ export default class App extends React.Component {
     }, 1000)
   }
 
+  /**
+   * Pause the exam timer countdown
+   */
   pauseTimer = () => {
     clearInterval(this.timer)
   }
 
+  /**
+   * Set the intervals value - time spent on each question
+   * @param intervals - {numbers[]} - new value of intervals
+   */
   setIntervals = intervals => this.setState({ intervals })
 
+  /**
+   * End the exam, stop timer, create a history report, open review mode, save history
+   */
   endExam = () => {
     this.pauseTimer()
     const { exam, answers, fillIns, orders, intervals, time, history } = this.state
@@ -220,6 +287,11 @@ export default class App extends React.Component {
     )
   }
 
+  /**
+   * Bookmark a question
+   * @param i {number} - index of question
+   * @param add {boolean} - add or remove bookmark
+   */
   onBookmarkQuestion = (i, add) => {
     const { examMode, marked } = this.state
     let newMarked = marked.slice(0)
@@ -239,12 +311,20 @@ export default class App extends React.Component {
     this.setState({ marked: newMarked })
   }
 
+  /**
+   * Answer a multiple choice question, check against correct answers, update answers
+   * @param answer {number} - index of answer
+   */
   onMultipleChoice = answer => {
     let { question, answers } = this.state
     answers[question] = answers[question].map((el, i) => i === answer)
     this.setState({ answers })
   }
 
+  /**
+   * Answer a multiple answer question, check against correct answers, update answers
+   * @param answer {number} - index of answer
+   */
   onMultipleAnswer = answer => {
     let { question, answers } = this.state
     answers[question] = answer
@@ -314,7 +394,14 @@ export default class App extends React.Component {
     const { exams, history, indexHistory } = this.state
     const report = history[indexHistory]
     const exam = exams.find(el => el.filename === report.filename)
-    this.setState({ mode: 3, exam, report, reviewMode: 0, reviewType: 0, reviewQuestion: 0 })
+    this.setState({
+      mode: 3,
+      exam,
+      report,
+      reviewMode: 0,
+      reviewType: 0,
+      reviewQuestion: 0
+    })
   }
 
   /**
@@ -406,6 +493,7 @@ export default class App extends React.Component {
         saveSession={this.saveSession}
         deleteExam={this.deleteExam}
         deleteHistory={this.deleteHistory}
+        deleteSession={this.deleteSession}
       >
         <Content
           {...rest}

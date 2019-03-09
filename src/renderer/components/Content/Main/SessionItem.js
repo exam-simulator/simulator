@@ -51,7 +51,12 @@ const SessionItemStyles = styled.div`
   }
 `
 
-export default ({ session }) => {
+export default ({ session, setIndexSession, setConfirmDeleteSession }) => {
+  const onDeleteClick = e => {
+    e.stopPropagation()
+    setIndexSession()
+    setConfirmDeleteSession()
+  }
   return (
     <SessionItemStyles>
       <div className="main">
@@ -62,7 +67,7 @@ export default ({ session }) => {
         <div className="stat">
           Completed: {session.completed}/{session.testLength}
         </div>
-        <div className="delete">
+        <div className="delete" onClick={onDeleteClick}>
           <Delete size={20} />
         </div>
       </div>
