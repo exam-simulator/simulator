@@ -1,16 +1,29 @@
 {
-  "name": "electron-exam-remix",
+  "name": "exam-simulator",
   "version": "1.0.0",
-  "description": "",
+  "description": "A JSON based, open source, exam simulator built with electron.",
   "main": "index.js",
+  "keywords": [
+    "exam",
+    "simulator"
+  ],
+  "author": {
+    "name": "benjaminadk",
+    "email": "jsonexamsimulator@gmail.com",
+    "url": "https://github.com/exam-simulator"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exam-simulator/simulator.git"
+  },
+  "homepage": "https://github.com/exam-simulator/simulator",
+  "license": "ISC",
   "scripts": {
     "dev": "electron-webpack dev",
     "prod": "electron ./dist/main/main.js",
-    "compile": "electron-webpack"
+    "compile": "electron-webpack",
+    "release": "electron-builder -p onTagOrDraft"
   },
-  "keywords": [],
-  "author": "benjaminadk",
-  "license": "ISC",
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
@@ -34,5 +47,23 @@
     "react-dom": "^16.8.3",
     "styled-components": "^4.1.3",
     "styled-icons": "^7.4.0"
+  },
+  "build": {
+    "appId": "Benjaminadk.ExamSimulator",
+    "productName": "Exam Simulator",
+    "copyright": "Copyright © 2019 Benjaminadk",
+    "win": {
+      "icon": "static/icon.ico",
+      "publish": {
+        "provider": "github",
+        "owner": "exam-simulator"
+      },
+      "target": [
+        "nsis"
+      ]
+    },
+    "directories": {
+      "output": "release"
+    }
   }
 }

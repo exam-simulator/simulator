@@ -1,0 +1,11 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+environment:
+  GH_TOKEN:
+    secure: FjBCe/1FoJYp3W+abIm79Pm7W3mUfA4B9tnHXDzle6wOdimJqAPtz88Y81FT7lm8
+install:
+  - cmd: npm install
+build_script:
+  - cmd: npm run compile
+deploy_script:
+  - cmd: npm run release
