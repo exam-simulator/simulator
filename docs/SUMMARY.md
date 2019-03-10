@@ -2,4 +2,5 @@
 
 * [Introduction](README.md)
 * [Installation](installation.md)
+* [Schema](schema.md)
 
