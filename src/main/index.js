@@ -1,8 +1,9 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import mainWinDimensions from 'common/mainWinDimensions'
 import mainWinContent from 'common/mainWinContent'
 import mainWinIcon from 'common/mainWinIcon'
-console.log(mainWinIcon)
+import mainWinMenu from 'common/mainWinMenu'
+
 let mainWin
 
 const inDev = process.env.NODE_ENV === 'development'
@@ -21,6 +22,8 @@ function createMainWin() {
   })
 
   mainWin.loadURL(mainWinContent(inDev))
+
+  mainWin.setMenu(mainWinMenu())
 
   installReactDevtools(inDev)
 

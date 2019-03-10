@@ -140,7 +140,12 @@ export default ({
       icon: <ExitToApp size={20} />,
       onClick: () => shell.openExternal('https://exam-maker.herokuapp.com/')
     },
-    { type: 'menu', text: 'Documentation', icon: <Help size={20} /> },
+    {
+      type: 'menu',
+      text: 'Documentation',
+      icon: <Help size={20} />,
+      onClick: () => shell.openExternal('https://exam-simulator.gitbook.io/exam-simulator/')
+    },
     { type: 'menu', text: 'About', icon: <Info size={20} /> },
     {
       type: 'menu',
