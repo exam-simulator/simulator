@@ -8,4 +8,4 @@ const OptionsStyles = styled.div`
   overflow-y: auto;
 `
 
-export default ({ options }) => <OptionsStyles>{JSON.stringify(options)}</OptionsStyles>
+export default ({ options }) => <OptionsStyles>🚧 Under Construction 🚧</OptionsStyles>

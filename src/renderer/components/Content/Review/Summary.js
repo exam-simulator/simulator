@@ -116,8 +116,8 @@ export default ({ report }) => (
           <div className="data status">{report.status ? 'PASS' : 'FAIL'}</div>
         </div>
         <div className="row">
-          <div>Score</div>
-          <div className="data">{report.score} %</div>
+          <div>Passing</div>
+          <div className="data">{report.pass} %</div>
         </div>
         <div className="row">
           <div>Time</div>
@@ -130,8 +130,8 @@ export default ({ report }) => (
       </div>
       <div className="column">
         <div className="row">
-          <div>Passing</div>
-          <div className="data">{report.pass} %</div>
+          <div>Score</div>
+          <div className="data">{report.score} %</div>
         </div>
         <div className="row">
           <div>Correct</div>

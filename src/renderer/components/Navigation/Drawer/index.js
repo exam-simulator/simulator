@@ -25,6 +25,7 @@ import { Close } from 'styled-icons/material/Close'
 import { QuestionMark } from 'styled-icons/boxicons-regular/QuestionMark'
 import { Report } from 'styled-icons/boxicons-solid/Report'
 import { Edit } from 'styled-icons/boxicons-solid/Edit'
+import showAboutDialog from '../../../utils/showAboutDialog'
 import Grid from './Grid'
 import Stats from './Stats'
 import ReviewGrid from './ReviewGrid'
@@ -146,7 +147,12 @@ export default ({
       icon: <Help size={20} />,
       onClick: () => shell.openExternal('https://exam-simulator.gitbook.io/exam-simulator/')
     },
-    { type: 'menu', text: 'About', icon: <Info size={20} /> },
+    {
+      type: 'menu',
+      text: 'About',
+      icon: <Info size={20} />,
+      onClick: showAboutDialog
+    },
     {
       type: 'menu',
       text: 'Report a Bug',
