@@ -17,6 +17,7 @@ import questionHelper from './utils/questionHelper'
 import { DATA_DIR_PATH } from './utils/filepaths'
 import Navigation from './components/Navigation'
 import Content from './components/Content'
+import Loading from './components/Loading'
 
 const mainWin = remote.BrowserWindow.fromId(1)
 
@@ -495,7 +496,7 @@ export default class App extends React.Component {
   render() {
     const { loading, ...rest } = this.state
     if (loading) {
-      return <div>loading</div>
+      return <Loading size={50} />
     }
     return (
       <Navigation
