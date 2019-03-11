@@ -6,7 +6,7 @@ import { ChevronUp } from 'styled-icons/boxicons-regular/ChevronUp'
 import { BLUE_LOGO_PATH } from '../../../utils/filepaths'
 import formatCreatedAt from '../../../utils/formatCreatedAt'
 
-const ExamItemStyles = styled.div`
+export const ExamItemStyles = styled.div`
   min-width: 80rem;
   height: ${props => (props.expand ? '12rem' : '6rem')};
   display: grid;

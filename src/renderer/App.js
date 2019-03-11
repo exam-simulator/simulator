@@ -10,6 +10,7 @@ import readOptionsFile from './utils/readOptionsFile'
 import writeData from './utils/writeData'
 import deleteExam from './utils/deleteExam'
 import showFileDialog from './utils/showFileDialog'
+import processRemoteExam from './utils/processRemoteExam'
 import analyzeAnswers from './utils/analyzeAnswers'
 import examDataStuctures from './utils/examDataStuctures'
 import createSession from './utils/createSession'
@@ -99,6 +100,17 @@ export default class App extends React.Component {
     const result = await showFileDialog(mainWin)
     if (result === true) {
       this.setExams()
+      this.setMainMode(0)
+    } else {
+      console.log(result) // array of error messages
+    }
+  }
+
+  loadRemoteExam = async (filename, exam) => {
+    const result = await processRemoteExam(filename, exam)
+    if (result === true) {
+      this.setExams()
+      this.setMainMode(0)
     } else {
       console.log(result) // array of error messages
     }
@@ -146,7 +158,7 @@ export default class App extends React.Component {
 
   /**
    * Set mode of main screen
-   * @param mainMode {number} - new main mode - 0 = exams | 1 = history | 2 = sessions | 3 = options
+   * @param mainMode {number} - new main mode - 0 = exams | 1 = history | 2 = sessions | 3 = options | 4 = add remote exam
    */
   setMainMode = mainMode => this.setState({ mainMode })
 
@@ -332,6 +344,10 @@ export default class App extends React.Component {
     this.setState({ answers })
   }
 
+  /**
+   * Answer a fill in the blank question, check against correct answers, update answers, add string to fill ins
+   * @param answer {string} - text input of answer
+   */
   onFillIn = answer => {
     let { exam, question, answers, fillIns } = this.state
     const correct = exam.test[question].choices.reduce((acc, val) => {
@@ -347,6 +363,11 @@ export default class App extends React.Component {
     this.setState({ answers, fillIns })
   }
 
+  /**
+   * Answer a list order question, check against correct answer, update answers, add order to orders
+   * @param order {number[]} - array of indexes represents user answer
+   * @param i {number} - index of question
+   */
   onListOrder = (order, i) => {
     let { answers, orders } = this.state
     const correct = order.map((el, j) => j)
@@ -388,6 +409,9 @@ export default class App extends React.Component {
     })
   }
 
+  /**
+   * Initialize a saved session
+   */
   initSession = () => {
     const { sessions, indexSession, exams } = this.state
     const session = sessions[indexSession]
@@ -496,7 +520,7 @@ export default class App extends React.Component {
   render() {
     const { loading, ...rest } = this.state
     if (loading) {
-      return <Loading size={50} />
+      return <Loading size={75} height={100} />
     }
     return (
       <Navigation
@@ -534,6 +558,7 @@ export default class App extends React.Component {
           onFillIn={this.onFillIn}
           onListOrder={this.onListOrder}
           setIntervals={this.setIntervals}
+          loadRemoteExam={this.loadRemoteExam}
         />
       </Navigation>
     )

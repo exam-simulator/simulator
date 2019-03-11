@@ -7,6 +7,7 @@ import Cover from './Cover'
 import Exam from './Exam'
 import Review from './Review'
 import Options from './Options'
+import AddRemoteExam from './AddRemoteExam'
 
 const ContentStyles = styled.div`
   display: grid;
@@ -50,6 +51,8 @@ export default class Content extends React.Component {
         )
       } else if (p.mainMode === 3) {
         return <Options options={p.options} />
+      } else if (p.mainMode === 4) {
+        return <AddRemoteExam loadRemoteExam={p.loadRemoteExam} />
       }
     } else if (p.mode === 1) {
       return <Cover cover={p.exam.cover} />

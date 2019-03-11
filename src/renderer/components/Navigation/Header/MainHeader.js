@@ -27,7 +27,15 @@ export const InnerHeader = styled.div`
 
 export default ({ mainMode }) => {
   const title =
-    mainMode === 0 ? 'Exams' : mainMode === 1 ? 'History' : mainMode === 2 ? 'Sessions' : 'Settings'
+    mainMode === 0
+      ? 'Exams'
+      : mainMode === 1
+      ? 'History'
+      : mainMode === 2
+      ? 'Sessions'
+      : mainMode === 3
+      ? 'Settings'
+      : 'Add Remote Exam'
   return (
     <InnerHeader>
       <div className="title">{title}</div>

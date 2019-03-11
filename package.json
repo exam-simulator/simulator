@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "ajv": "^6.10.0",
+    "axios": "^0.18.0",
     "date-fns": "^2.0.0-alpha.27",
     "electron-devtools-installer": "^2.2.4",
     "immutability-helper": "^3.0.0",

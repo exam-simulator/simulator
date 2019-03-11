@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
-const FillInStyles = styled.div`
+export const FillInStyles = styled.div`
   position: relative;
   width: 40rem;
   padding: 1rem;

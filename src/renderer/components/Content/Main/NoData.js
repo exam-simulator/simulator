@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const NoDataStyles = styled.div`
+export const NoDataStyles = styled.div`
   height: 5rem;
   display: grid;
   justify-items: center;

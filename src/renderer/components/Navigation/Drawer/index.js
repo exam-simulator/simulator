@@ -130,7 +130,12 @@ export default ({
       icon: <PlaylistAdd size={20} />,
       onClick: loadLocalExam
     },
-    { type: 'menu', text: 'Add Remote Exam', icon: <CloudDownload size={20} /> },
+    {
+      type: 'menu',
+      text: 'Add Remote Exam',
+      icon: <CloudDownload size={20} />,
+      onClick: () => setMainMode(4)
+    },
     { type: 'menu', text: 'Exams', icon: <Folder size={20} />, onClick: () => setMainMode(0) },
     { type: 'menu', text: 'History', icon: <History size={20} />, onClick: () => setMainMode(1) },
     { type: 'menu', text: 'Sessions', icon: <Save size={20} />, onClick: () => setMainMode(2) },

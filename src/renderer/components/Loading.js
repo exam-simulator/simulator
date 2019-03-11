@@ -13,7 +13,7 @@ transform: rotate(360deg);
 
 const LoadingStyles = styled.div`
   width: 100%;
-  height: 100vh;
+  height: ${props => props.height}vh;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -23,8 +23,8 @@ const LoadingStyles = styled.div`
   }
 `
 
-export default ({ size }) => (
-  <LoadingStyles>
+export default ({ size, height }) => (
+  <LoadingStyles height={height}>
     <Spinner size={size} />
   </LoadingStyles>
 )
