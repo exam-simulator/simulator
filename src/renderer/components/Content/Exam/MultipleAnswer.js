@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { CheckBox } from 'styled-icons/material/CheckBox'
 import { CheckBoxOutlineBlank } from 'styled-icons/material/CheckBoxOutlineBlank'
 import { MultipleStyles } from './MultipleChoice'
+import formatAnswerLabel from '../../../utils/formatAnswerLabel'
 
 export default ({ review, question, answers, onMultipleAnswer }) => {
   const [values, setValues] = useState([])
@@ -42,7 +43,7 @@ export default ({ review, question, answers, onMultipleAnswer }) => {
         >
           {values.includes(i) ? <CheckBox size={20} /> : <CheckBoxOutlineBlank size={20} />}
           <div className="text">
-            <div>{el.label}.</div>
+            <div>{formatAnswerLabel(i)}.</div>
             <div>{el.text}</div>
           </div>
         </MultipleStyles>

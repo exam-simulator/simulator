@@ -520,7 +520,7 @@ export default class App extends React.Component {
   render() {
     const { loading, ...rest } = this.state
     if (loading) {
-      return <Loading size={75} height={100} />
+      return <Loading size={100} height={100} />
     }
     return (
       <Navigation

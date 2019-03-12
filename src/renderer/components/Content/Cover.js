@@ -28,7 +28,7 @@ const BigText = styled.div`
   color: ${props => props.theme.black};
 `
 
-export default ({ cover }) => (
+export default React.memo(({ cover }) => (
   <CoverStyles>
     {cover.map((el, i) => {
       if (el.variant === 0) {
@@ -47,4 +47,4 @@ export default ({ cover }) => (
       }
     })}
   </CoverStyles>
-)
+))

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 import { RadioButtonChecked } from 'styled-icons/material/RadioButtonChecked'
 import { RadioButtonUnchecked } from 'styled-icons/material/RadioButtonUnchecked'
+import formatAnswerLabel from '../../../utils/formatAnswerLabel'
 
 export const MultipleStyles = styled.div`
   display: grid;
@@ -66,7 +67,7 @@ export default ({ review, question, answers, onMultipleChoice }) => {
         >
           {value === i ? <RadioButtonChecked size={20} /> : <RadioButtonUnchecked size={20} />}
           <div className="text">
-            <div>{el.label}.</div>
+            <div>{formatAnswerLabel(i)}.</div>
             <div>{el.text}</div>
           </div>
         </MultipleStyles>
