@@ -27,6 +27,7 @@ export default ({
   orders,
   intervals,
   marked,
+  confirmPauseTimer,
   onBookmarkQuestion,
   onMultipleChoice,
   onMultipleAnswer,
@@ -52,6 +53,7 @@ export default ({
                 review={false}
                 question={el.question}
                 index={i}
+                confirmPauseTimer={confirmPauseTimer}
                 intervals={intervals}
                 setIntervals={setIntervals}
               />

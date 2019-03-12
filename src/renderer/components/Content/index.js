@@ -69,6 +69,7 @@ export default class Content extends React.Component {
           orders={p.orders}
           intervals={p.intervals}
           marked={p.marked}
+          confirmPauseTimer={p.confirmPauseTimer}
           onBookmarkQuestion={p.onBookmarkQuestion}
           onMultipleChoice={p.onMultipleChoice}
           onMultipleAnswer={p.onMultipleAnswer}

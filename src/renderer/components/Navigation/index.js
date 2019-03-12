@@ -136,6 +136,7 @@ export default class Navigation extends React.Component {
           {React.Children.map(children, child =>
             React.cloneElement(child, {
               open,
+              confirmPauseTimer,
               setConfirmReviewExam: () => this.setConfirmReviewExam(true),
               setConfirmDeleteExam: () => this.setConfirmDeleteExam(true),
               setConfirmDeleteHistory: () => this.setConfirmDeleteHistory(true),

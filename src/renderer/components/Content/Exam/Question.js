@@ -36,10 +36,16 @@ export default class Question extends React.Component {
     if (this.props.review) {
       return
     }
-    this.timer = setInterval(() => {
-      const { time } = this.state
-      this.setState({ time: time + 1 })
-    }, 1000)
+    this.initTimer()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.confirmPauseTimer && this.props.confirmPauseTimer) {
+      clearInterval(this.timer)
+    }
+    if (prevProps.confirmPauseTimer && !this.props.confirmPauseTimer) {
+      this.initTimer()
+    }
   }
 
   componentWillUnmount() {
@@ -53,6 +59,13 @@ export default class Question extends React.Component {
     } = this
     intervals[index] += time
     this.props.setIntervals(intervals)
+  }
+
+  initTimer = () => {
+    this.timer = setInterval(() => {
+      const { time } = this.state
+      this.setState({ time: time + 1 })
+    }, 1000)
   }
 
   render() {

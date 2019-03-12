@@ -1,6 +1,6 @@
 {
   "name": "exam-simulator",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha.1",
   "description": "A JSON based, open source, exam simulator built with electron.",
   "main": "index.js",
   "keywords": [
