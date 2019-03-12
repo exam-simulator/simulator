@@ -59,7 +59,7 @@ export default ({ loadRemoteExam }) => {
     await setLoading(true)
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:8081/api/search',
+      url: 'https://exam-maker-backend.herokuapp.com/api/search',
       params: {
         term: value
       }
@@ -77,7 +77,7 @@ export default ({ loadRemoteExam }) => {
   const onExamClick = async id => {
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:8081/api/download',
+      url: 'https://exam-maker-backend.herokuapp.com/api/download',
       params: {
         id
       }
