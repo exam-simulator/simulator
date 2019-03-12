@@ -206,7 +206,7 @@ export default class App extends React.Component {
     } else {
       if (marked.length === 1) return
       const newQuestion = questionHelper(source, marked, question)
-      if (!newQuestion) {
+      if (newQuestion === false) {
         return
       }
       this.setState({ question: newQuestion })
