@@ -64,6 +64,17 @@
         "nsis"
       ]
     },
+    "mac": {
+      "category": "public.app-category.education",
+      "icon": "static/icon.icns",
+      "publish": {
+        "provider": "github",
+        "owner": "benjaminadk"
+      },
+      "target": [
+        "dmg"
+      ]
+    },
     "directories": {
       "output": "release"
     }
