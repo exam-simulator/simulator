@@ -1,4 +1,5 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow } from 'electron'
+import { autoUpdater } from 'electron-updater'
 import mainWinDimensions from 'common/mainWinDimensions'
 import mainWinContent from 'common/mainWinContent'
 import mainWinIcon from 'common/mainWinIcon'
@@ -7,6 +8,8 @@ import mainWinMenu from 'common/mainWinMenu'
 let mainWin
 
 const inDev = process.env.NODE_ENV === 'development'
+
+autoUpdater.checkForUpdatesAndNotify()
 
 function createMainWin() {
   const [width, height] = mainWinDimensions()
