@@ -1,6 +1,6 @@
 {
   "name": "exam-simulator",
-  "version": "1.0.0-alpha.01",
+  "version": "1.0.0-alpha",
   "description": "A JSON based, open source, exam simulator built with electron.",
   "main": "index.js",
   "keywords": [
@@ -22,7 +22,7 @@
     "dev": "electron-webpack dev",
     "prod": "electron ./dist/main/main.js",
     "compile": "electron-webpack",
-    "release": "electron-builder -p onTagOrDraft"
+    "release": "electron-builder -p always"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
