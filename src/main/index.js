@@ -7,6 +7,8 @@ import mainWinMenu from 'common/mainWinMenu'
 
 let mainWin
 
+const gotTheLock = app.requestSingleInstanceLock()
+
 const inDev = process.env.NODE_ENV === 'development'
 
 autoUpdater.checkForUpdatesAndNotify()
@@ -49,5 +51,18 @@ function installReactDevtools(inDev) {
   }
 }
 
-app.on('ready', createMainWin)
+if (!gotTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', () => {
+    if (mainWin) {
+      if (mainWin.isMinimized()) {
+        mainWin.restore()
+      }
+      mainWin.focus()
+    }
+  })
+  app.on('ready', createMainWin)
+}
+
 app.on('window-all-closed', () => app.quit())
