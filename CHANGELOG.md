@@ -10,8 +10,8 @@
 
 ### Fixed
 
-## 1.0.0 <data>
+## 1.0.0-alpha.01 03-12-19
 
 - Initial Release
 
-[unreleased]: https://github.com/exam-simulator/simulator/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/exam-simulator/simulator/compare/v1.0.0-alpha.01...HEAD
