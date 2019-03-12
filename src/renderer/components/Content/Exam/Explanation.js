@@ -44,7 +44,7 @@ const BigText = styled.div`
   color: ${props => props.theme.black};
 `
 
-export default ({ explanationRef, question, answers }) => {
+export default React.memo(({ explanationRef, question, answers }) => {
   const variant = question.variant
   const correctAnswers = variant === 0 || variant === 1 ? question.answer : question.choices
   const status = variant === 0 || variant === 1 ? isequal(answers, question.answer) : answers[0]
@@ -75,4 +75,4 @@ export default ({ explanationRef, question, answers }) => {
       </div>
     </ExplanationStyles>
   )
-}
+})

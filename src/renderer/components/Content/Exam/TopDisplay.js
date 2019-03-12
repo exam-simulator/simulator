@@ -33,7 +33,7 @@ const TopDisplayStyles = styled.div`
   }
 `
 
-export default ({ question, length, marked, examMode, onBookmarkQuestion }) => {
+export default React.memo(({ question, length, marked, examMode, onBookmarkQuestion }) => {
   const bookmarked = marked.includes(question)
   return (
     <TopDisplayStyles bookmarked={bookmarked}>
@@ -50,4 +50,4 @@ export default ({ question, length, marked, examMode, onBookmarkQuestion }) => {
       )}
     </TopDisplayStyles>
   )
-}
+})

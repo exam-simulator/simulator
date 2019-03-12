@@ -35,7 +35,7 @@ export const MultipleStyles = styled.div`
   }
 `
 
-export default ({ review, question, answers, onMultipleChoice }) => {
+export default React.memo(({ review, question, answers, onMultipleChoice }) => {
   const [value, setValue] = useState(null)
 
   // sets value when component mounts only
@@ -74,4 +74,4 @@ export default ({ review, question, answers, onMultipleChoice }) => {
       ))}
     </div>
   )
-}
+})

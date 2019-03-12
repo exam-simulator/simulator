@@ -39,6 +39,10 @@ export default class Question extends React.Component {
     this.initTimer()
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return false
+  }
+
   componentDidUpdate(prevProps) {
     if (!prevProps.confirmPauseTimer && this.props.confirmPauseTimer) {
       clearInterval(this.timer)

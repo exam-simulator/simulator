@@ -4,7 +4,7 @@ import { CheckBoxOutlineBlank } from 'styled-icons/material/CheckBoxOutlineBlank
 import { MultipleStyles } from './MultipleChoice'
 import formatAnswerLabel from '../../../utils/formatAnswerLabel'
 
-export default ({ review, question, answers, onMultipleAnswer }) => {
+export default React.memo(({ review, question, answers, onMultipleAnswer }) => {
   const [values, setValues] = useState([])
 
   useEffect(() => {
@@ -50,4 +50,4 @@ export default ({ review, question, answers, onMultipleAnswer }) => {
       ))}
     </div>
   )
-}
+})

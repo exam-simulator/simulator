@@ -25,7 +25,7 @@ export const FillInStyles = styled.div`
   }
 `
 
-export default ({ review, fillIn, onFillIn }) => {
+export default React.memo(({ review, fillIn, onFillIn }) => {
   const inputRef = useRef(null)
   const [focus, setFocus] = useState(false)
   const [value, setValue] = useState('')
@@ -67,4 +67,4 @@ export default ({ review, fillIn, onFillIn }) => {
       />
     </FillInStyles>
   )
-}
+})
