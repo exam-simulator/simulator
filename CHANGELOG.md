@@ -10,6 +10,10 @@
 - `app.requestSingleInstanceLock` to prevent running more than one instance of application
 - **LoadingMain** component with title and spinner
 
+### Changed
+
+- **Exam** folder optimized with `shouldComponentUpdate` and `React.memo`
+
 ### Fixed
 
 - **AddRemoteExam** component set endpoints to production api
