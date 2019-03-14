@@ -4,7 +4,7 @@ description: Description of exam schema.
 
 # Schema
 
-Exam files use the `.json` extension. **JSON**, or **JavaScript Object Notation** is a data format that is supported by many programming languages. Files must use this extension and adhere to the schema defined below.
+Exam files use the `.json` extension. _JSON_, or _JavaScript Object Notation_ is a data format that is supported by many programming languages. Files must use this extension and adhere to the schema defined below.
 
 [Exam Maker](https://exam-maker.herokuapp.com/) allows users to create and share exams without knowing this schema. However, exams can be created in any text editor.
 
@@ -78,7 +78,7 @@ Exam files use the `.json` extension. **JSON**, or **JavaScript Object Notation*
 | :--- | :--- | :--- |
 | **id** | unique identifier | `string` |
 | **name** | author name | `string` |
-| **image** | author avatar | `string` |
+| **image** | author image URL | `string` |
 
 #### 
 
@@ -101,7 +101,7 @@ Exam files use the `.json` extension. **JSON**, or **JavaScript Object Notation*
 | **0** | multiple choice | `[true,false,false,false]` |
 | **1** | multiple answer | `[true,true,false,false]` |
 | **2** | fill in the blank | `[answer,variation,another]` |
-| **3** | list order | `[first,second,third]` |
+| **3** | list order | `[]` |
 
 
 
