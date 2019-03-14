@@ -90,7 +90,7 @@ const MenuItem = styled.div`
 `
 
 const Spacer0 = styled.div`
-  height: calc(100vh - 55rem);
+  height: calc(100vh - 50grem);
   border-top: 1px solid ${props => props.theme.grey[2]};
   border-bottom: 1px solid ${props => props.theme.grey[2]};
 `
@@ -130,12 +130,12 @@ export default ({
       icon: <PlaylistAdd size={20} />,
       onClick: loadLocalExam
     },
-    {
-      type: 'menu',
-      text: 'Add Remote Exam',
-      icon: <CloudDownload size={20} />,
-      onClick: () => setMainMode(4)
-    },
+    // {
+    //   type: 'menu',
+    //   text: 'Add Remote Exam',
+    //   icon: <CloudDownload size={20} />,
+    //   onClick: () => setMainMode(4)
+    // },
     { type: 'menu', text: 'Exams', icon: <Folder size={20} />, onClick: () => setMainMode(0) },
     { type: 'menu', text: 'History', icon: <History size={20} />, onClick: () => setMainMode(1) },
     { type: 'menu', text: 'Sessions', icon: <Save size={20} />, onClick: () => setMainMode(2) },
