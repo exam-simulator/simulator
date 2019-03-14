@@ -15,6 +15,7 @@ const CoverStyles = styled.div`
 const Image = styled.img`
   max-height: 40vh;
   margin-bottom: 0.5rem;
+  border: 1px solid ${props => props.theme.grey[2]};
 `
 
 const NormalText = styled.div`

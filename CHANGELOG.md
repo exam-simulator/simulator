@@ -13,6 +13,7 @@
 ### Changed
 
 - **Exam** folder optimized with `shouldComponentUpdate` and `React.memo`
+- **Confirm** styles
 
 ### Fixed
 

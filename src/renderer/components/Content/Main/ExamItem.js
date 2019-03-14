@@ -7,13 +7,14 @@ import { BLUE_LOGO_PATH } from '../../../utils/filepaths'
 import formatCreatedAt from '../../../utils/formatCreatedAt'
 
 export const ExamItemStyles = styled.div`
-  min-width: 80rem;
+  min-width: 75rem;
   height: ${props => (props.expand ? '12rem' : '6rem')};
   display: grid;
   grid-template-rows: ${props => (props.expand ? '1fr 1fr' : '1fr')};
   border: 1px solid ${props => props.theme.grey[2]};
   border-radius: ${props => props.theme.borderRadius};
   cursor: pointer;
+  margin-right: 2rem;
   margin-bottom: 2rem;
   user-select: none;
   &:hover {

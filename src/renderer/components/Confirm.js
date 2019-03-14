@@ -34,6 +34,7 @@ const ConfirmStyles = styled.div`
     justify-content: center;
     font: 1.3rem 'Open Sans';
     font-weight: 600;
+    padding: 1rem;
   }
   .actions {
     height: 5rem;
