@@ -26,7 +26,11 @@ const HistoryGroupStyles = styled.div`
       height: 2rem;
     }
     .title {
-      font: 2rem 'Open Sans';
+      width: 28rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font: 1.8rem 'Open Sans';
       font-weight: 700;
       color: ${props => props.theme.grey[12]};
     }
@@ -50,7 +54,9 @@ export default ({ reports, averageScore, averageTime, onOpenConfirmReview, onDel
     <HistoryGroupStyles expand={expand}>
       <div className="group-data" onClick={() => setExpand(!expand)}>
         <img src={reports[0].image || BLUE_LOGO_PATH} />
-        <div className="title">{reports[0].title}</div>
+        <div className="title" title={reports[0].title}>
+          {reports[0].title}
+        </div>
         <Bar
           type="score"
           value={averageScore}

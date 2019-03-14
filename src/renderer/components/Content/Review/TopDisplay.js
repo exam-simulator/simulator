@@ -22,7 +22,7 @@ const TopDisplayStyles = styled.div`
 export default ({ exam, reviewQuestion, reviewType }) => (
   <TopDisplayStyles>
     <div>
-      Question {reviewQuestion + 1} of {exam.test.length}
+      Question {reviewQuestion + 1} of {exam ? exam.test.length : ''}
     </div>
     <div>
       [ {reviewType === 0 ? 'All ' : reviewType === 1 ? 'Incorrect ' : 'Incomplete '}Questions ]

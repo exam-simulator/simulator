@@ -6,6 +6,16 @@
 
 ### Added
 
+- **Notes** component, user can add custom notes to each question
+
+### Changed
+
+### Fixed
+
+## 1.0.0-alpha.1
+
+### Added
+
 - `electron-updater` to perform automatic updates on `Windows`, (`MacOS` requires code signature)
 - `app.requestSingleInstanceLock` to prevent running more than one instance of application
 - **LoadingMain** component with title and spinner
@@ -14,6 +24,7 @@
 
 - **Exam** folder optimized with `shouldComponentUpdate` and `React.memo`
 - **Confirm** styles
+- Removed **AddRemoteExam** component
 
 ### Fixed
 
@@ -24,4 +35,6 @@
 
 - Initial Release
 
-[unreleased]: https://github.com/exam-simulator/simulator/compare/v1.0.0-alpha.01...HEAD
+[unreleased]: https://github.com/exam-simulator/simulator/compare/v1.0.0-alpha.1...HEAD
+[1.0.0-alpha.1]: https://github.com/exam-simulator/simulator/compare/v1.0.0-alpha...v1.0.0-alpha.1
+[1.0.0-alpha]: https://github.com/exam-simulator/simulator/tag/v1.0.0-alpha

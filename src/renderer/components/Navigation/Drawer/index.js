@@ -90,7 +90,7 @@ const MenuItem = styled.div`
 `
 
 const Spacer0 = styled.div`
-  height: calc(100vh - 50grem);
+  height: calc(100vh - 50rem);
   border-top: 1px solid ${props => props.theme.grey[2]};
   border-bottom: 1px solid ${props => props.theme.grey[2]};
 `
@@ -120,7 +120,8 @@ export default ({
   setReviewQuestion,
   setConfirmBeginExam,
   setConfirmEndExam,
-  setConfirmSaveSession
+  setConfirmSaveSession,
+  setShowNotes
 }) => {
   // Main Menu show when mode === 0
   const menu0 = [
@@ -260,7 +261,8 @@ export default ({
     {
       type: 'menu',
       text: 'Add Notes',
-      icon: <Edit size={20} />
+      icon: <Edit size={20} />,
+      onClick: setShowNotes
     },
     {
       type: 'menu',

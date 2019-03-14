@@ -517,6 +517,18 @@ export default class App extends React.Component {
     }
   }
 
+  /**
+   * Notes feature to rewrite the explanation for a question
+   * @param explanation {object[]} - array of nodes
+   */
+  setExamExplanation = async explanation => {
+    const { exam, reviewQuestion } = this.state
+    exam.test[reviewQuestion].explanation = explanation
+    await writeData('exam', exam, exam.filename)
+    await this.setExams()
+    await this.setState({ exam })
+  }
+
   render() {
     const { loading, ...rest } = this.state
     if (loading) {
@@ -543,6 +555,7 @@ export default class App extends React.Component {
         deleteExam={this.deleteExam}
         deleteHistory={this.deleteHistory}
         deleteSession={this.deleteSession}
+        setExamExplanation={this.setExamExplanation}
       >
         <Content
           {...rest}

@@ -33,6 +33,9 @@ export const ExamItemStyles = styled.div`
     }
     .title {
       justify-self: flex-start;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: hidden;
       font: 2rem 'Open Sans';
       font-weight: 700;
       color: ${props => props.theme.grey[12]};

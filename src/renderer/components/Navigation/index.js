@@ -3,6 +3,7 @@ import Header from './Header'
 import Drawer from './Drawer'
 import Footer from './Footer'
 import Confirm from '../Confirm'
+import Notes from '../Content/Review/Notes'
 import { Main } from '../../styles/Main'
 
 export default class Navigation extends React.Component {
@@ -17,7 +18,8 @@ export default class Navigation extends React.Component {
     confirmPauseTimer: false,
     confirmDeleteExam: false,
     confirmDeleteHistory: false,
-    confirmDeleteSession: false
+    confirmDeleteSession: false,
+    showNotes: false
   }
 
   componentDidUpdate(prevProps) {
@@ -45,6 +47,12 @@ export default class Navigation extends React.Component {
   setConfirmDeleteHistory = confirmDeleteHistory => this.setState({ confirmDeleteHistory })
 
   setConfirmDeleteSession = confirmDeleteSession => this.setState({ confirmDeleteSession })
+
+  setShowNotes = showNotes => {
+    if (this.props.reviewMode === 1) {
+      this.setState({ showNotes })
+    }
+  }
 
   startExam = () => {
     this.setConfirmBeginExam(false)
@@ -116,7 +124,8 @@ export default class Navigation extends React.Component {
         confirmPauseTimer,
         confirmDeleteExam,
         confirmDeleteHistory,
-        confirmDeleteSession
+        confirmDeleteSession,
+        showNotes
       }
     } = this
     return (
@@ -130,6 +139,7 @@ export default class Navigation extends React.Component {
           setConfirmBeginExam={() => this.setConfirmBeginExam(true)}
           setConfirmEndExam={() => this.setConfirmEndExam(true)}
           setConfirmSaveSession={() => this.setConfirmSaveSession(true)}
+          setShowNotes={() => this.setShowNotes(true)}
           pauseExam={this.pauseExam}
         />
         <Main open={open}>
@@ -224,6 +234,13 @@ export default class Navigation extends React.Component {
           buttons={['Delete Session', 'Cancel']}
           onConfirm={this.deleteSession}
           onClose={() => this.setConfirmDeleteSession(false)}
+        />
+        <Notes
+          show={showNotes}
+          test={rest.exam && rest.exam.test}
+          reviewQuestion={rest.reviewQuestion}
+          onClose={() => this.setShowNotes(false)}
+          setExamExplanation={this.props.setExamExplanation}
         />
       </>
     )
