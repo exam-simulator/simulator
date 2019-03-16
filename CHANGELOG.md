@@ -6,6 +6,7 @@
 
 ### Added
 
+- **Testing** - testing is done with `spectron` using `mocha` as a test runner and `chai` & `chai-as-promised` assertion libraries
 - **Notes** component, user can add custom notes to each question
 
 ### Changed

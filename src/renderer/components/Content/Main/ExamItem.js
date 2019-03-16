@@ -102,7 +102,7 @@ export default ({ exam, setIndexExam, initExam, setConfirmDeleteExam }) => {
   }
 
   return (
-    <ExamItemStyles expand={expand} onClick={initExam}>
+    <ExamItemStyles data-test={exam.title} expand={expand} onClick={initExam}>
       <div className="main">
         <img className="image" src={exam.image || BLUE_LOGO_PATH} alt={exam.title} />
         <div className="title">{exam.title}</div>

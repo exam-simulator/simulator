@@ -7,3 +7,6 @@ release
 
 #vscode settings
 .vscode
+
+# prettier settings
+.prettierignore

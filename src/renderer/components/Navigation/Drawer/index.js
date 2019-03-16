@@ -286,7 +286,7 @@ export default ({
         {menu.map((el, i) => {
           if (el.type === 'menu') {
             return (
-              <MenuItem key={el.text} onClick={el.onClick}>
+              <MenuItem key={el.text} data-test={el.text} onClick={el.onClick}>
                 {el.icon}
                 <div>{el.text}</div>
               </MenuItem>
