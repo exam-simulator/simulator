@@ -7,7 +7,5 @@ install:
   - cmd: npm install
 build_script:
   - cmd: npm run compile
-test_script:
-  - cmd: npm test
 deploy_script:
   - cmd: npm run release
