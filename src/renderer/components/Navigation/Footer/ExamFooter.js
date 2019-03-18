@@ -69,7 +69,7 @@ export default ({
   <ExamFooter open={open} warning={time < 120}>
     <div className="timer">
       <Timer size={30} />
-      <div>{formatTimer(time)}</div>
+      <div data-test="Timer">{formatTimer(time)}</div>
     </div>
     <div className="arrows">
       <div className="arrow" onClick={onFirstQuestion}>

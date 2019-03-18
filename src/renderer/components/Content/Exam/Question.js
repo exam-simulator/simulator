@@ -75,7 +75,7 @@ export default class Question extends React.Component {
   render() {
     const { question } = this.props
     return (
-      <QuestionStyles>
+      <QuestionStyles data-test="Question">
         {question.map((el, i) => {
           if (el.variant === 0) {
             return (

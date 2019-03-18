@@ -94,6 +94,7 @@ export default ({ open, length, question, answers, fillIns, orders, marked, setQ
               return (
                 <GridItem
                   key={i}
+                  data-test={`Grid Item ${i}`}
                   background={background}
                   selected={i === question}
                   onClick={() => setQuestion(i, 'grid')}
