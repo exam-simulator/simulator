@@ -8,6 +8,11 @@ import { EXAM_DIR_PATH } from './filepaths'
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
+const getOS = () => {
+  const os = ['Windows', 'Linux', 'Mac']
+  return os.find(v => window.navigator.userAgent.indexOf(v) >= 0)
+}
+
 /**
  * Show native file dialog then parse and validate JSON file
  * @param {object} win - Instance of electron BrowserWindow
@@ -28,7 +33,10 @@ export default win => {
           resolve(false)
         } else {
           // isolate filename from path
-          const filename = filepaths[0].split('\\').pop()
+          const os = getOS()
+          const filename = os === 'Windows' 
+            ? filepaths[0].split('\\').pop() 
+            : filepaths[0].split('/').pop()
           // path to application data directory
           const dstFilepath = path.join(EXAM_DIR_PATH, filename)
           // read contents of new exam file
